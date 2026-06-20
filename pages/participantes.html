@@ -1,0 +1,116 @@
+<div class="page" id="page-participantes">
+  <div class="part-body">
+    <div class="sr" style="margin-bottom:36px;">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Equipo de trabajo</div>
+      <h2 style="font-size:42px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;">PARTICIPANTES</h2>
+      <p style="font-size:14px;color:var(--gray);">Investigadores, técnicos, estudiantes e instituciones que hacen posible este proyecto.</p>
+    </div>
+    <div class="part-tabs sr" id="part-tabs-wrap">
+      <button class="part-tab active" onclick="activePart(this,'investigadores')">Investigadores</button>
+      <button class="part-tab" onclick="activePart(this,'tecnicos')">Técnicos</button>
+      <button class="part-tab" onclick="activePart(this,'estudiantes')">Estudiantes</button>
+      <button class="part-tab" onclick="activePart(this,'instituciones')">Instituciones</button>
+      <button class="part-tab" onclick="activePart(this,'colaboradores')">Colaboradores</button>
+    </div>
+
+    <!-- INVESTIGADORES -->
+    <div id="part-investigadores" class="part-section">
+      <div class="part-grid sr">
+        <div class="part-card sr-child" style="--sd:.00s">
+          <div class="part-avatar pa-1" style="font-size:32px;">👩‍🔬</div>
+          <div class="part-name">Dra. Blanca Estela<br>Pérez Hernández</div>
+          <div class="part-role">Responsable académica</div>
+          <div class="part-inst">Facultad de Ingeniería, UNAM</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:14px;">
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">✉️</span>
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">🔗</span>
+          </div>
+        </div>
+        <div class="part-card sr-child" style="--sd:.08s">
+          <div class="part-avatar pa-2" style="font-size:32px;">👨‍🔬</div>
+          <div class="part-name">Dr. José Luis<br>Arcega Cervantes</div>
+          <div class="part-role">Investigador</div>
+          <div class="part-inst">Facultad de Ingeniería, UNAM</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:14px;">
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">✉️</span>
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">🔗</span>
+          </div>
+        </div>
+        <div class="part-card sr-child" style="--sd:.16s">
+          <div class="part-avatar pa-3" style="font-size:32px;">👩‍🔬</div>
+          <div class="part-name">Dra. Karen<br>Caballero Rodríguez</div>
+          <div class="part-role">Investigadora</div>
+          <div class="part-inst">Facultad de Ingeniería, UNAM</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:14px;">
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">✉️</span>
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">🔗</span>
+          </div>
+        </div>
+        <div class="part-card sr-child" style="--sd:.24s">
+          <div class="part-avatar pa-4" style="font-size:32px;">👨‍🔬</div>
+          <div class="part-name">Dr. Martín Jesús<br>Sánchez Muñoz</div>
+          <div class="part-role">Investigador</div>
+          <div class="part-inst">Facultad de Ingeniería, UNAM</div>
+          <div style="display:flex;gap:10px;justify-content:center;margin-top:14px;">
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">✉️</span>
+            <span style="font-size:16px;cursor:pointer;opacity:.6;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">🔗</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TÉCNICOS -->
+    <div id="part-tecnicos" class="part-section" style="display:none;">
+      <div class="part-grid sr" style="grid-template-columns:repeat(3,1fr);">
+        <div class="part-card sr-child" style="--sd:.00s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d3a5a,#1a6a7a);font-size:28px;">👨‍💻</div><div class="part-name">Técnico en SIG</div><div class="part-role">Análisis espacial</div><div class="part-inst">Facultad de Ingeniería, UNAM</div></div>
+        <div class="part-card sr-child" style="--sd:.08s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d3a5a,#1a6a7a);font-size:28px;">👩‍💻</div><div class="part-name">Técnica en Fotogrametría</div><div class="part-role">Procesamiento UAV</div><div class="part-inst">Facultad de Ingeniería, UNAM</div></div>
+        <div class="part-card sr-child" style="--sd:.16s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d3a5a,#1a6a7a);font-size:28px;">👨‍🔧</div><div class="part-name">Técnico de Campo</div><div class="part-role">Muestreo y medición</div><div class="part-inst">Facultad de Ingeniería, UNAM</div></div>
+      </div>
+    </div>
+
+    <!-- ESTUDIANTES -->
+    <div id="part-estudiantes" class="part-section" style="display:none;">
+      <div class="part-grid sr">
+        <div class="part-card sr-child" style="--sd:.00s"><div class="part-avatar" style="background:linear-gradient(135deg,#1a0d3a,#3a1a5a);font-size:28px;">🎓</div><div class="part-name">Estudiante de Doctorado</div><div class="part-role">Modelado 3D costero</div><div class="part-inst">Posgrado Ingeniería, UNAM</div></div>
+        <div class="part-card sr-child" style="--sd:.08s"><div class="part-avatar" style="background:linear-gradient(135deg,#1a0d3a,#3a1a5a);font-size:28px;">🎓</div><div class="part-name">Estudiante de Maestría</div><div class="part-role">Análisis de vulnerabilidad</div><div class="part-inst">Posgrado Ingeniería, UNAM</div></div>
+        <div class="part-card sr-child" style="--sd:.16s"><div class="part-avatar" style="background:linear-gradient(135deg,#1a0d3a,#3a1a5a);font-size:28px;">🎓</div><div class="part-name">Estudiante de Licenciatura</div><div class="part-role">Procesamiento SIG</div><div class="part-inst">Facultad de Ingeniería, UNAM</div></div>
+        <div class="part-card sr-child" style="--sd:.24s"><div class="part-avatar" style="background:linear-gradient(135deg,#1a0d3a,#3a1a5a);font-size:28px;">🎓</div><div class="part-name">Servicio Social</div><div class="part-role">Fotogrametría UAV</div><div class="part-inst">Facultad de Ingeniería, UNAM</div></div>
+      </div>
+    </div>
+
+    <!-- INSTITUCIONES -->
+    <div id="part-instituciones" class="part-section" style="display:none;">
+      <div class="sr" style="display:flex;flex-direction:column;gap:14px;max-width:700px;">
+        <div style="background:var(--card);border:1px solid rgba(45,212,191,.25);padding:20px 24px;border-radius:10px;display:flex;align-items:center;gap:18px;transition:all .3s;" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(0,0,0,.4)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <div style="font-size:28px;">🦅</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;">UNAM · Facultad de Ingeniería</div><div style="font-size:12px;color:var(--gray);">División de Ingeniería en Ciencias de la Tierra</div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:20px 24px;border-radius:10px;display:flex;align-items:center;gap:18px;transition:all .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div style="font-size:28px;">🔬</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;">ICAT · UNAM</div><div style="font-size:12px;color:var(--gray);">Instituto de Ciencias Aplicadas y Tecnología</div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:20px 24px;border-radius:10px;display:flex;align-items:center;gap:18px;transition:all .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div style="font-size:28px;">🌊</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;">Instituto de Ciencias del Mar y Limnología · UNAM</div><div style="font-size:12px;color:var(--gray);">Investigación en oceanografía y ciencias acuáticas</div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:20px 24px;border-radius:10px;display:flex;align-items:center;gap:18px;transition:all .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div style="font-size:28px;">🌾</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;">Colegio de Postgraduados Chapingo</div><div style="font-size:12px;color:var(--gray);">Campus Montecillo · Ciencias del suelo y recursos naturales</div></div>
+        </div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:20px 24px;border-radius:10px;display:flex;align-items:center;gap:18px;transition:all .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.3)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='';this.style.transform=''">
+          <div style="font-size:28px;">🏛️</div><div><div style="font-size:14px;font-weight:700;margin-bottom:3px;">UAM Iztapalapa</div><div style="font-size:12px;color:var(--gray);">Universidad Autónoma Metropolitana · División de Ciencias Básicas e Ingeniería</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLABORADORES -->
+    <div id="part-colaboradores" class="part-section" style="display:none;">
+      <div class="part-grid sr" style="grid-template-columns:repeat(3,1fr);">
+        <div class="part-card sr-child" style="--sd:.00s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d2a1a,#1a5a3a);font-size:28px;">🗺️</div><div class="part-name">Colaborador SIG</div><div class="part-role">Análisis geoespacial</div><div class="part-inst">Colaboración externa</div></div>
+        <div class="part-card sr-child" style="--sd:.08s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d2a1a,#1a5a3a);font-size:28px;">🚁</div><div class="part-name">Piloto de Dron</div><div class="part-role">Vuelos fotogramétricos</div><div class="part-inst">Colaboración técnica</div></div>
+        <div class="part-card sr-child" style="--sd:.16s"><div class="part-avatar" style="background:linear-gradient(135deg,#0d2a1a,#1a5a3a);font-size:28px;">💻</div><div class="part-name">Desarrollador Web</div><div class="part-role">Plataforma digital</div><div class="part-inst">Colaboración tecnológica</div></div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;" class="sr">
+      <button class="ver-todos-btn">VER A TODOS LOS PARTICIPANTES</button>
+    </div>
+  </div>
+</div>
+

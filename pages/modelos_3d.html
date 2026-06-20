@@ -1,0 +1,300 @@
+<div class="page" id="page-modelos">
+
+  <!-- MODAL VISOR 3D -->
+  <div id="modelo-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(5,10,20,0.97);flex-direction:column;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 28px;border-bottom:1px solid rgba(45,212,191,0.2);background:rgba(13,21,32,0.98);">
+      <div>
+        <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;margin-bottom:4px;" id="modal-eyebrow">Modelo 3D · Fotogrametría</div>
+        <div style="font-size:20px;font-weight:800;" id="modal-title">Playa La Audiencia</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="display:flex;gap:6px;" id="modal-tags-wrap"></div>
+        <button onclick="closeModeloModal()" style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:var(--white);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+      </div>
+    </div>
+    <div style="flex:1;position:relative;overflow:hidden;">
+      <!-- Sketchfab iframe -->
+      <iframe id="modal-iframe" 
+        src="" 
+        frameborder="0" 
+        allowfullscreen 
+        mozallowfullscreen="true" 
+        webkitallowfullscreen="true"
+        style="width:100%;height:100%;border:none;">
+      </iframe>
+      <!-- Fallback cuando no hay modelo Sketchfab: visor 3D CSS simulado -->
+      <div id="modal-fallback" style="display:none;width:100%;height:100%;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 60%, #0d3545 0%, #051015 100%);">
+        <div id="fallback-scene" style="width:100%;height:100%;position:relative;cursor:grab;user-select:none;">
+          <!-- 3D CSS terrain simulation -->
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <div id="terrain-3d" style="width:500px;height:300px;position:relative;transform-style:preserve-3d;transform:rotateX(45deg) rotateZ(0deg);transition:transform 0.1s;">
+              <!-- Terrain layers -->
+              <div style="position:absolute;width:500px;height:300px;background:linear-gradient(135deg,#1a4a2e,#2d6a3a 40%,#0d7490 70%,#0a5060);border-radius:8px;transform:translateZ(0px);"></div>
+              <div style="position:absolute;width:480px;height:280px;left:10px;top:10px;background:linear-gradient(135deg,rgba(45,212,191,0.3),rgba(14,116,144,0.4));border-radius:6px;transform:translateZ(20px);clip-path:polygon(0 60%,15% 30%,30% 50%,50% 20%,70% 45%,85% 25%,100% 40%,100% 100%,0 100%);"></div>
+              <div style="position:absolute;width:500px;height:80px;bottom:0;left:0;background:rgba(8,100,140,0.7);transform:translateZ(5px);border-radius:0 0 8px 8px;"></div>
+              <!-- Grid lines -->
+              <div style="position:absolute;inset:0;border-radius:8px;transform:translateZ(25px);background-image:linear-gradient(rgba(45,212,191,0.15) 1px,transparent 1px),linear-gradient(90deg,rgba(45,212,191,0.15) 1px,transparent 1px);background-size:40px 40px;"></div>
+            </div>
+          </div>
+          <div style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(255,255,255,0.5);text-align:center;">
+            Arrastra para rotar · Scroll para zoom · <span style="color:var(--teal);">Modelo de demostración</span>
+          </div>
+          <div style="position:absolute;top:20px;right:20px;display:flex;flex-direction:column;gap:6px;">
+            <div id="rot-label" style="font-size:10px;color:rgba(255,255,255,0.4);text-align:right;">Rotación: 0°</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Info bar bottom -->
+    <div style="padding:14px 28px;background:rgba(13,21,32,0.98);border-top:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;">
+      <div style="display:flex;gap:32px;" id="modal-meta">
+        <div><div style="font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Técnica</div><div style="font-size:12px;font-weight:600;" id="modal-tecnica">Fotogrametría UAV</div></div>
+        <div><div style="font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Resolución</div><div style="font-size:12px;font-weight:600;" id="modal-resolucion">5 cm/píxel</div></div>
+        <div><div style="font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Año</div><div style="font-size:12px;font-weight:600;" id="modal-año">2024</div></div>
+        <div><div style="font-size:9px;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Vértices</div><div style="font-size:12px;font-weight:600;" id="modal-vertices">2.4M</div></div>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button onclick="openSketchfab()" id="btn-sketchfab" style="padding:8px 18px;background:transparent;border:1px solid var(--teal);color:var(--teal);font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:inherit;border-radius:3px;">↗ ABRIR EN SKETCHFAB</button>
+        <button style="padding:8px 18px;background:var(--teal);border:none;color:#0a0f1a;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;font-family:inherit;border-radius:3px;">⬇ DESCARGAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modelos-layout">
+    <div class="modelos-sidebar">
+      <div style="padding:28px 20px 16px;"><div class="section-eyebrow" style="margin-bottom:0;">CATEGORÍAS</div></div>
+      <div class="cat-item active" onclick="filterModelos(this,'todas')"><span>Todas</span><span style="color:var(--teal);">›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'playas')"><span>Playas</span><span>›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'acantilados')"><span>Acantilados</span><span>›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'formaciones')"><span>Formaciones rocosas</span><span>›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'perfiles')"><span>Perfiles costeros</span><span>›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'topografia')"><span>Topografía</span><span>›</span></div>
+      <div class="cat-item" onclick="filterModelos(this,'fotogrametria')"><span>Fotogrametría aérea</span><span>›</span></div>
+    </div>
+
+    <div class="modelos-body">
+      <h2 style="font-size:42px;font-weight:900;margin-bottom:12px;letter-spacing:-1px;">MODELOS 3D</h2>
+      <p style="font-size:13px;color:var(--gray);margin-bottom:20px;">Explora los modelos tridimensionales del litoral obtenidos mediante fotogrametría y escáner.</p>
+      <!-- Search + filters bar like PDF -->
+      <div style="display:flex;gap:12px;margin-bottom:28px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;position:relative;">
+          <span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gray);font-size:14px;">🔍</span>
+          <input type="text" placeholder="Buscar modelo..." id="modelo-search" oninput="searchModelos(this.value)"
+            style="width:100%;padding:10px 12px 10px 36px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);font-size:13px;border-radius:6px;font-family:inherit;outline:none;transition:border-color .2s;"
+            onfocus="this.style.borderColor='rgba(45,212,191,.5)'" onblur="this.style.borderColor=''">
+        </div>
+        <select id="modelo-sitio" onchange="searchModelos(document.getElementById('modelo-search').value)"
+          style="padding:10px 16px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);font-size:12px;border-radius:6px;font-family:inherit;min-width:140px;">
+          <option value="">Todos los sitios</option>
+          <option>La Audiencia</option>
+          <option>Punta Chica</option>
+          <option>Olas Altas</option>
+          <option>Bahía de Santiago</option>
+          <option>San Pedrito</option>
+          <option>Miramar</option>
+        </select>
+        <select id="modelo-orden"
+          style="padding:10px 16px;background:rgba(255,255,255,.06);border:1px solid var(--border);color:var(--white);font-size:12px;border-radius:6px;font-family:inherit;min-width:130px;">
+          <option>Más recientes</option>
+          <option>Más antiguos</option>
+          <option>A–Z</option>
+        </select>
+      </div>
+
+      <div class="modelos-grid" id="modelos-grid">
+
+        <!-- CARD 1 -->
+        <div class="modelo-card" data-cat="playas" onclick="openModelo(0)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Manzanillo%2C_Colima%2C_M%C3%A9xico_%2814%29.jpg/640px-Manzanillo%2C_Colima%2C_M%C3%A9xico_%2814%29.jpg" 
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;" 
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#1a4a2e,#0d7490)&quot;>🏖️</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Playa La Audiencia</div>
+            <div class="modelo-type">Modelo 3D · Playa</div>
+            <div class="modelo-tags"><span class="tag">Fotogrametría</span><span class="tag">RTK</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(0)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="modelo-card" data-cat="acantilados" onclick="openModelo(1)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Manzanillo%2C_Colima%2C_M%C3%A9xico_%2821%29.jpg/640px-Manzanillo%2C_Colima%2C_M%C3%A9xico_%2821%29.jpg"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;"
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2d1a0d,#6b4510)&quot;>🏔️</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Acantilado Punta Chica</div>
+            <div class="modelo-type">Modelo 3D · Acantilado</div>
+            <div class="modelo-tags"><span class="tag">Fotogrametría</span><span class="tag">UAV</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(1)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="modelo-card" data-cat="playas" onclick="openModelo(2)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Manzanillo%2C_Colima%2C_M%C3%A9xico_%281%29.jpg/640px-Manzanillo%2C_Colima%2C_M%C3%A9xico_%281%29.jpg"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;"
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#0d2a4a,#0d7490)&quot;>🌊</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Playa Olas Altas</div>
+            <div class="modelo-type">Modelo 3D · Playa</div>
+            <div class="modelo-tags"><span class="tag">Escáner 3D</span><span class="tag">Erosión</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(2)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="modelo-card" data-cat="topografia" onclick="openModelo(3)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Manzanillo_Colima_Bahia.jpg/640px-Manzanillo_Colima_Bahia.jpg"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;"
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#0a1a2a,#0d5a7a)&quot;>🗺️</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Bahía de Manzanillo</div>
+            <div class="modelo-type">Modelo 3D · Topografía</div>
+            <div class="modelo-tags"><span class="tag">MDE</span><span class="tag">Batimetría</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(3)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="modelo-card" data-cat="formaciones" onclick="openModelo(4)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Manzanillo%2C_Colima%2C_M%C3%A9xico_%2810%29.jpg/640px-Manzanillo%2C_Colima%2C_M%C3%A9xico_%2810%29.jpg"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;"
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#1a2a0d,#3a4a2a)&quot;>🪨</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Punta San Pedrito</div>
+            <div class="modelo-type">Modelo 3D · Formación rocosa</div>
+            <div class="modelo-tags"><span class="tag">Fotogrametría</span><span class="tag">RTK</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(4)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+        <!-- CARD 6 -->
+        <div class="modelo-card" data-cat="playas" onclick="openModelo(5)">
+          <div class="modelo-thumb" style="background:#000;overflow:hidden;position:relative;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Manzanillo%2C_Colima%2C_M%C3%A9xico_%2817%29.jpg/640px-Manzanillo%2C_Colima%2C_M%C3%A9xico_%2817%29.jpg"
+              style="width:100%;height:100%;object-fit:cover;opacity:0.9;transition:transform .4s;"
+              onerror="this.parentNode.innerHTML='<div style=&quot;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#2a0d0d,#3a1010)&quot;>🌅</div>'"
+              class="modelo-img-hover">
+            <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(10,15,26,0.8));"></div>
+            <div style="position:absolute;top:12px;right:12px;background:rgba(45,212,191,0.9);color:#0a0f1a;font-size:9px;font-weight:700;padding:3px 8px;border-radius:2px;letter-spacing:1px;">3D</div>
+          </div>
+          <div class="modelo-info">
+            <div class="modelo-name">Playa Miramar</div>
+            <div class="modelo-type">Modelo 3D · Playa</div>
+            <div class="modelo-tags"><span class="tag">Fotogrametría</span><span class="tag">Alta vulnerabilidad</span></div>
+            <button class="ver-btn" onclick="event.stopPropagation();openModelo(5)">▶ VER MODELO</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+.modelo-card:hover .modelo-img-hover { transform: scale(1.08); }
+#modelo-modal { display:none; }
+#modelo-modal.open { display:flex; }
+
+/* ── INICIO ANIMATIONS & COMPONENTS ── */
+/* Hero entrance */
+.h-anim { opacity:0; transform:translateY(28px); transition:opacity .75s ease, transform .75s ease; }
+.h-anim.vis { opacity:1; transform:none; }
+
+/* Floating cards */
+.float-card {
+  position:absolute; z-index:3;
+  background:rgba(10,16,28,0.88); border:1px solid rgba(45,212,191,0.28);
+  border-radius:12px; padding:14px 18px;
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+}
+@keyframes fc-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* Scroll mouse */
+@keyframes scroll-mouse { 0%,100%{transform:translateY(0);opacity:.8} 50%{transform:translateY(10px);opacity:.2} }
+
+/* Pulse dot */
+@keyframes pulse-dot { 0%,100%{box-shadow:0 0 0 0 rgba(45,212,191,.5)} 50%{box-shadow:0 0 0 6px rgba(45,212,191,0)} }
+
+/* Feature strip bar */
+.fc-bar { height:2px; background:var(--teal); width:0; margin-top:14px; transition:width .4s ease; border-radius:1px; }
+.fcard:hover .fc-bar { width:100%; }
+.fcard { transition:background .2s, transform .25s; }
+.fcard:hover { background:var(--card2); transform:translateY(-3px); }
+
+/* Scroll reveal */
+.sr { opacity:0; transform:translateY(36px); transition:opacity .75s ease, transform .75s ease; }
+.sr.vis { opacity:1; transform:none; }
+.sr-child { opacity:0; transform:translateY(24px); transition:opacity .6s ease var(--sd,.0s), transform .6s ease var(--sd,.0s); }
+.sr-child.vis { opacity:1; transform:none; }
+
+/* Tool cards */
+.tool-card {
+  position:relative; overflow:hidden;
+  background:var(--card); border:1px solid var(--border);
+  padding:28px 24px; border-radius:10px; cursor:pointer;
+  transition:border-color .3s, transform .3s, box-shadow .3s;
+}
+.tool-card-glow {
+  position:absolute; inset:0; border-radius:10px;
+  background:radial-gradient(circle at 50% 0%, rgba(45,212,191,.1), transparent 70%);
+  opacity:0; transition:opacity .35s;
+}
+.tool-card:hover { border-color:rgba(45,212,191,.35); transform:translateY(-5px); box-shadow:0 16px 48px rgba(0,0,0,.45); }
+.tool-card:hover .tool-card-glow { opacity:1; }
+.tool-cta { font-size:11px; color:var(--teal); font-weight:700; letter-spacing:.5px; }
+
+/* About cards */
+.abt-card {
+  background:var(--card); border:1px solid var(--border);
+  padding:22px 20px; border-radius:8px;
+  transition:border-color .3s, transform .3s;
+}
+.abt-card:hover { border-color:rgba(45,212,191,.3); transform:translateY(-3px); }
+
+/* Playa cards */
+.playa-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:10px; overflow:hidden; cursor:pointer;
+  transition:border-color .3s, transform .3s, box-shadow .3s;
+}
+.playa-card:hover { border-color:rgba(45,212,191,.35); transform:translateY(-5px); box-shadow:0 14px 40px rgba(0,0,0,.5); }
+.playa-img {
+  height:130px; display:flex; align-items:center; justify-content:center;
+  font-size:44px; transition:transform .4s;
+}
+.playa-card:hover .playa-img { transform:scale(1.06); }
+.playa-info { padding:16px; }
+.vuln-pill { display:inline-block; font-size:10px; font-weight:700; padding:3px 10px; border-radius:10px; }
+.vuln-alta { color:#ef4444; background:rgba(239,68,68,.12); }
+.vuln-media { color:#f97316; background:rgba(249,115,22,.12); }
+.vuln-baja { color:#22c55e; background:rgba(34,197,94,.12); }
+
+</style>
+
+<!-- ══════════ 5. LÍNEA DEL TIEMPO ══════════ -->

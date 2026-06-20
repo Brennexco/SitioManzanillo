@@ -1,0 +1,68 @@
+<div class="page" id="page-timeline">
+  <div style="padding:48px 64px;overflow-y:auto;max-height:calc(100vh - 64px);">
+    <div class="sr">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:10px;">Análisis multitemporal</div>
+      <h2 style="font-size:42px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;">Línea del Tiempo</h2>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:40px;">Explora los cambios del litoral de Manzanillo a través del tiempo.</p>
+    </div>
+
+    <!-- Timeline track -->
+    <div class="sr" style="margin:0 0 32px;">
+      <div style="position:relative;padding:0 20px;">
+        <div style="height:3px;background:rgba(255,255,255,.1);border-radius:2px;position:relative;">
+          <div id="tl-prog" style="position:absolute;left:0;top:0;height:100%;width:50%;background:linear-gradient(90deg,var(--bg),var(--teal));border-radius:2px;transition:width .5s ease;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:-9px;">
+          <div class="tl-dot-wrap" onclick="setYear(this,0,'2008')"><div class="tl-dot active"></div><div class="tl-year active">2008</div></div>
+          <div class="tl-dot-wrap" onclick="setYear(this,20,'2012')"><div class="tl-dot"></div><div class="tl-year">2012</div></div>
+          <div class="tl-dot-wrap" onclick="setYear(this,40,'2015')"><div class="tl-dot"></div><div class="tl-year">2015</div></div>
+          <div class="tl-dot-wrap" onclick="setYear(this,60,'2020')"><div class="tl-dot"></div><div class="tl-year">2020</div></div>
+          <div class="tl-dot-wrap" onclick="setYear(this,80,'2024')"><div class="tl-dot"></div><div class="tl-year">2024</div></div>
+          <div class="tl-dot-wrap" onclick="setYear(this,100,'Actualidad')"><div class="tl-dot" style="background:linear-gradient(135deg,var(--teal),var(--blue));border-color:var(--teal);box-shadow:0 0 12px rgba(45,212,191,.5);"></div><div class="tl-year" style="color:var(--teal);font-weight:700;">Actualidad</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 300px;gap:24px;">
+      <!-- Comparador -->
+      <div class="sr">
+        <div style="border:1px solid var(--border);border-radius:8px;overflow:hidden;height:360px;display:grid;grid-template-columns:1fr 4px 1fr;cursor:col-resize;position:relative;">
+          <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#0a1e0a,#0d3020 40%,#0a4030 70%,#064050);">
+            <div style="position:absolute;bottom:28%;left:0;right:0;height:130px;background:rgba(20,60,20,.75);clip-path:polygon(0 100%,0 40%,20% 55%,35% 20%,50% 45%,65% 25%,80% 50%,100% 30%,100% 100%)"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;height:28%;background:rgba(8,100,140,.45);clip-path:polygon(0 70%,10% 40%,25% 60%,40% 30%,60% 55%,75% 25%,90% 50%,100% 35%,100% 100%,0 100%)"></div>
+            <div id="tl-left-label" style="position:absolute;top:16px;left:16px;background:rgba(10,15,26,.85);padding:6px 16px;font-size:14px;font-weight:700;border-radius:4px;backdrop-filter:blur(4px);">2008</div>
+          </div>
+          <div style="background:rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;z-index:2;">
+            <div style="width:30px;height:30px;border-radius:50%;background:var(--white);color:#0a0f1a;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;box-shadow:0 2px 10px rgba(0,0,0,.4);">⇔</div>
+          </div>
+          <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,#051218,#0a2030 40%,#0d3545 70%,#0a5060);">
+            <div style="position:absolute;bottom:28%;left:0;right:0;height:130px;background:rgba(15,55,18,.75);clip-path:polygon(0 100%,0 45%,20% 60%,35% 25%,50% 50%,65% 30%,80% 55%,100% 35%,100% 100%)"></div>
+            <div style="position:absolute;bottom:0;left:0;right:0;height:28%;background:rgba(8,100,140,.45);clip-path:polygon(0 70%,10% 40%,25% 60%,40% 30%,60% 55%,75% 25%,90% 50%,100% 35%,100% 100%,0 100%)"></div>
+            <div id="tl-right-label" style="position:absolute;top:16px;left:16px;background:rgba(10,15,26,.85);padding:6px 16px;font-size:14px;font-weight:700;border-radius:4px;backdrop-filter:blur(4px);">2020</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel derecho -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="sr" style="background:var(--card);border:1px solid var(--border);padding:20px;border-radius:8px;">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:14px;">CAPAS COMPARABLES</div>
+          <div class="capa-check"><input type="checkbox" checked> Líneas de costa</div>
+          <div class="capa-check"><input type="checkbox" checked> Erosión / Acumulación</div>
+          <div class="capa-check"><input type="checkbox"> Uso de suelo</div>
+          <div class="capa-check"><input type="checkbox"> Infraestructura</div>
+          <div class="capa-check"><input type="checkbox"> Ortosmosaicos</div>
+        </div>
+        <div class="sr" style="background:var(--card);border:1px solid var(--border);padding:20px;border-radius:8px;">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:14px;">INFORMACIÓN</div>
+          <div class="info-row"><span class="info-row-label">Retroceso promedio</span><span class="info-row-val">15.4 m</span></div>
+          <div class="info-row"><span class="info-row-label">Avance promedio</span><span class="info-row-val">12.6 m</span></div>
+          <div class="info-row"><span class="info-row-label">Área acumulada</span><span class="info-row-val">4.3 ha</span></div>
+          <div class="info-row"><span class="info-row-label">Período</span><span class="info-row-val" id="tl-period">2008–2020</span></div>
+          <button class="dl-comp-btn" style="margin-top:14px;">⬇ DESCARGAR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,32 @@
+<div class="page" id="page-multimedia">
+  <div class="multi-body">
+    <div class="sr" style="margin-bottom:32px;">
+      <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Archivo visual del proyecto</div>
+      <h2 style="font-size:42px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;">MULTIMEDIA</h2>
+      <p style="font-size:14px;color:var(--gray);">Imágenes, videos y material audiovisual del trabajo de campo y laboratorio.</p>
+    </div>
+    <div class="multi-tabs sr">
+      <button class="multi-tab active" onclick="activeMulti(this,'todas')">Todas</button>
+      <button class="multi-tab" onclick="activeMulti(this,'fotografias')">Fotografías</button>
+      <button class="multi-tab" onclick="activeMulti(this,'videos')">Vídeos</button>
+      <button class="multi-tab" onclick="activeMulti(this,'drones')">Drones</button>
+      <button class="multi-tab" onclick="activeMulti(this,'campo')">Trabajo de campo</button>
+      <button class="multi-tab" onclick="activeMulti(this,'laboratorio')">Laboratorio</button>
+    </div>
+    <!-- 4-col grid like PDF -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;" class="sr" id="multi-grid-inner">
+      <div class="multi-card" data-cat="fotografias drones"><div class="multi-bg mb-1" style="width:100%;height:100%;"><div class="multi-mount"></div><div class="multi-wave"></div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+      <div class="multi-card" data-cat="videos campo" style="position:relative;"><div class="multi-bg mb-2" style="width:100%;height:100%;"><div class="multi-mount" style="background:rgba(20,50,20,.7)"></div></div><div class="multi-overlay"><div class="play-circle">▶</div></div><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;">▶</div></div>
+      <div class="multi-card" data-cat="drones videos" style="position:relative;"><div class="multi-bg mb-3" style="width:100%;height:100%;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.5;">🚁</div></div><div class="multi-overlay"><div class="play-circle">▶</div></div><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:18px;pointer-events:none;">▶</div></div>
+      <div class="multi-card" data-cat="laboratorio fotografias"><div class="multi-bg mb-4" style="width:100%;height:100%;"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.6;">👨‍🔬</div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+      <div class="multi-card" data-cat="fotografias drones"><div class="multi-bg mb-5" style="width:100%;height:100%;"><div class="multi-mount" style="background:rgba(5,40,60,.7);bottom:35%;"></div><div class="multi-wave" style="background:rgba(6,80,130,.5)"></div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+      <div class="multi-card" data-cat="campo fotografias"><div class="multi-bg mb-6" style="width:100%;height:100%;"><div class="multi-mount" style="background:rgba(30,55,10,.7)"></div><div class="multi-wave" style="background:rgba(6,100,80,.4)"></div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+      <div class="multi-card" data-cat="campo fotografias"><div class="multi-bg mb-2" style="width:100%;height:100%;background:linear-gradient(135deg,#1a2a0d,#2a4a1a 50%,#3a5a2a);"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.5;">⛏️</div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+      <div class="multi-card" data-cat="fotografias campo"><div class="multi-bg mb-4" style="width:100%;height:100%;background:linear-gradient(135deg,#2a1a0a,#4a3a1a 50%,#6a5a2a);"><div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:36px;opacity:.5;">📡</div></div><div class="multi-overlay"><div class="play-circle">🔍</div></div></div>
+    </div>
+    <div style="text-align:center;margin-top:28px;" class="sr">
+      <button class="ver-galeria-btn">VER GALERÍA COMPLETA</button>
+    </div>
+  </div>
+</div>
+

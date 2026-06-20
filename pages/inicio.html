@@ -1,0 +1,280 @@
+<div class="page active" id="page-inicio">
+
+  <!-- ░░░ HERO ░░░ -->
+  <section class="hero" id="hero-section" style="min-height:560px;">
+    <div class="hero-landscape"></div>
+    <div class="hero-overlay"></div>
+
+    <!-- Canvas partículas -->
+    <canvas id="px-canvas" style="position:absolute;inset:0;z-index:1;pointer-events:none;width:100%;height:100%;"></canvas>
+
+    <!-- SVG olas -->
+    <svg id="hero-waves" style="position:absolute;bottom:0;left:0;width:100%;height:90px;z-index:2;pointer-events:none;" viewBox="0 0 1440 90" preserveAspectRatio="none">
+      <path id="wv1" fill="rgba(45,212,191,0.10)"/>
+      <path id="wv2" fill="rgba(45,212,191,0.06)"/>
+      <path id="wv3" fill="rgba(10,15,26,0.5)"/>
+    </svg>
+
+    <!-- Contenido -->
+    <div class="hero-content" style="z-index:3;position:relative;padding-bottom:80px;">
+      <div id="h-badge" class="h-anim" style="display:inline-flex;align-items:center;gap:8px;background:rgba(45,212,191,0.12);border:1px solid rgba(45,212,191,0.3);border-radius:20px;padding:6px 16px;font-size:11px;letter-spacing:1.5px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:20px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse-dot 2s ease-in-out infinite;"></span>
+        PAPITT IF100926 · UNAM · Facultad de Ingeniería
+      </div>
+      <div id="h-sm" class="hero-title-sm h-anim" style="font-size:16px;letter-spacing:3px;color:var(--teal);text-transform:uppercase;">ATLAS DIGITAL</div>
+      <div id="h-lg" class="hero-title-lg h-anim">LITORAL <span style="font-weight:300;font-size:0.7em;">DE</span><br>MANZANILLO</div>
+      <p id="h-desc" class="hero-desc h-anim">Desarrollo de infraestructura académica digital interactiva para el análisis geoespacial de la vulnerabilidad costera en Manzanillo, Colima, con fotogrametría, modelado 3D y análisis remoto multitemporal.</p>
+      <div id="h-btns" class="hero-btns h-anim">
+        <button class="btn-primary" onclick="goTo('visor')" style="font-size:13px;padding:13px 28px;">🗺️ Explorar el Atlas</button>
+        <button class="btn-outline" onclick="goTo('modelos')" style="font-size:13px;padding:13px 28px;">🏔️ Ver Modelos 3D</button>
+      </div>
+    </div>
+
+    <!-- Floating info cards -->
+    <div id="fc-1" class="float-card h-anim" style="right:9%;top:28%;">
+      <div class="float-card-inner" style="animation:fc-float 4s ease-in-out infinite;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:6px;"><circle cx="10" cy="10" r="9" stroke="#2dd4bf" stroke-width="1.5"/><path d="M10 5v5l3 3" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <div style="font-size:11px;font-weight:700;color:var(--teal);">Análisis 2008–2024</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px;">4 períodos · 120 km</div>
+      </div>
+    </div>
+    <div id="fc-2" class="float-card h-anim" style="right:6%;top:54%;">
+      <div class="float-card-inner" style="animation:fc-float 5s ease-in-out infinite 1.2s;">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="margin-bottom:6px;"><path d="M10 2L18 7v6L10 18 2 13V7L10 2z" stroke="#2dd4bf" stroke-width="1.5"/><circle cx="10" cy="10" r="2" fill="#2dd4bf"/></svg>
+        <div style="font-size:11px;font-weight:700;color:var(--teal);">50+ Modelos 3D</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px;">Fotogrametría RTK</div>
+      </div>
+    </div>
+    <div id="fc-3" class="float-card h-anim" style="right:24%;top:16%;">
+      <div class="float-card-inner" style="animation:fc-float 3.5s ease-in-out infinite 0.5s;border-color:rgba(249,115,22,0.35);">
+        <div style="font-size:10px;font-weight:700;color:#f97316;">⚠ VULNERABILIDAD ALTA</div>
+        <div style="font-size:10px;color:var(--gray);margin-top:2px;">Playa Miramar · Puntaje 0.72</div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div id="h-scroll" class="h-anim" style="position:absolute;bottom:24px;left:64px;z-index:3;display:flex;align-items:center;gap:10px;">
+      <div style="width:24px;height:40px;border:1.5px solid rgba(255,255,255,0.3);border-radius:12px;display:flex;align-items:flex-start;justify-content:center;padding-top:6px;">
+        <div style="width:4px;height:8px;background:var(--teal);border-radius:2px;animation:scroll-mouse 2s ease-in-out infinite;"></div>
+      </div>
+      <span style="font-size:10px;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;">Scroll</span>
+    </div>
+  </section>
+
+  <!-- ░░░ FEATURE STRIP ░░░ -->
+  <div id="feat-strip" class="features-grid">
+    <div class="feature-card fcard" onclick="goTo('visor')">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px;"><circle cx="14" cy="14" r="10" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><path d="M7 14h14M14 7v14" stroke="#2dd4bf" stroke-width="1.2"/><circle cx="14" cy="14" r="3" fill="#2dd4bf" opacity="0.4"/></svg>
+      <div class="fc-title">Visor Geoespacial</div>
+      <div class="fc-desc">Explora mapas interactivos con capas de geología, geomorfología, sedimentos y vulnerabilidad costera.</div>
+      <div class="fc-bar"></div>
+    </div>
+    <div class="feature-card fcard" onclick="goTo('modelos')">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px;"><path d="M14 4L24 10v8L14 24 4 18v-8L14 4z" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><line x1="14" y1="4" x2="14" y2="14" stroke="#2dd4bf" stroke-width="1.2"/><line x1="24" y1="10" x2="14" y2="14" stroke="#2dd4bf" stroke-width="1.2"/><line x1="4" y1="10" x2="14" y2="14" stroke="#2dd4bf" stroke-width="1.2"/></svg>
+      <div class="fc-title">Modelos 3D</div>
+      <div class="fc-desc">Visualiza modelos 3D de playas, acantilados, afloramientos y estructuras costeras.</div>
+      <div class="fc-bar"></div>
+    </div>
+    <div class="feature-card fcard" onclick="goTo('timeline')">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px;"><circle cx="14" cy="14" r="10" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><path d="M14 8v6l4 4" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="fc-title">Línea del Tiempo</div>
+      <div class="fc-desc">Analiza la evolución costera a través de imágenes y datos multitemporales.</div>
+      <div class="fc-bar"></div>
+    </div>
+    <div class="feature-card fcard" onclick="goTo('vulnerabilidad')">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px;"><path d="M14 4L22 8v8Q22 20 14 24Q6 20 6 16V8L14 4z" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><path d="M10 14l3 3 5-5" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="fc-title">Vulnerabilidad</div>
+      <div class="fc-desc">Consulta los mapas y análisis de vulnerabilidad ante erosión, ascenso del nivel del mar y eventos extremos.</div>
+      <div class="fc-bar"></div>
+    </div>
+    <div class="feature-card fcard" onclick="goTo('datos')">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="margin-bottom:12px;"><ellipse cx="14" cy="9" rx="8" ry="3" stroke="#2dd4bf" stroke-width="1.5"/><path d="M6 9v5c0 1.66 3.58 3 8 3s8-1.34 8-3V9" stroke="#2dd4bf" stroke-width="1.5"/><path d="M6 14v5c0 1.66 3.58 3 8 3s8-1.34 8-3v-5" stroke="#2dd4bf" stroke-width="1.5"/></svg>
+      <div class="fc-title">Datos y Resultados</div>
+      <div class="fc-desc">Accede a informes, artículos, datasets, ortomosaicos y perfiles costeros.</div>
+      <div class="fc-bar"></div>
+    </div>
+  </div>
+
+  <!-- ░░░ STATS ░░░ -->
+  <div class="stats-bar" id="stats-bar" style="display:grid;grid-template-columns:220px repeat(6,1fr);">
+    <div style="padding:28px 24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);background:rgba(45,212,191,0.04);">
+      <div style="font-size:11px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Conociendo nuestro litoral</div>
+      <div style="font-size:12px;color:var(--gray);line-height:1.6;">Ciencia, tecnología y territorio para la toma de decisiones y la gestión costera sustentable.</div>
+    </div>
+    <div class="stat-item"><span class="stat-num" data-target="120" data-suffix="+">0+</span><div class="stat-label">Vuelos con dron RTK</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="25">0</span><div class="stat-label">Capas geoespaciales</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="50" data-suffix="+">0+</span><div class="stat-label">Modelos 3D</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="4">0</span><div class="stat-label">Períodos multitemporales</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="30" data-suffix="+">0+</span><div class="stat-label">Productos científicos</div></div>
+    <div class="stat-item"><span class="stat-num" data-target="15" data-suffix="+">0+</span><div class="stat-label">Instituciones</div></div>
+  </div>
+
+  <!-- ░░░ ABOUT ░░░ -->
+  <div class="section sr" id="about-sec">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;">
+      <div>
+        <div class="section-eyebrow">Innovación en Geociencias Costeras</div>
+        <h2 class="section-title" style="font-size:38px;">¿Qué es el<br>Proyecto PAPIT?</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,.68);line-height:1.9;margin-bottom:32px;">El proyecto analiza la vulnerabilidad costera del litoral de Manzanillo mediante <strong style="color:var(--teal);">geotecnologías</strong>, fotogrametría SIG y análisis multitemporal, generando una plataforma de acceso abierto para la investigación y la docencia universitaria.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn-primary" onclick="goTo('proyecto')">Conocer el Proyecto</button>
+          <button class="btn-outline" onclick="goTo('participantes')">Ver Equipo →</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+        <div class="abt-card sr-child" style="grid-column:span 2;--sd:.0s">
+          <div style="font-size:28px;margin-bottom:10px;">🌊</div>
+          <div style="font-size:14px;font-weight:700;color:var(--teal);margin-bottom:6px;">120 km de Litoral</div>
+          <div style="font-size:12px;color:var(--gray);line-height:1.6;">Cobertura total del municipio de Manzanillo, Colima — playas, bahías, acantilados y zonas rocosas.</div>
+        </div>
+        <div class="abt-card sr-child" style="--sd:.1s">
+          <div style="font-size:24px;margin-bottom:8px;">🚁</div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:4px;">Fotogrametría RTK</div>
+          <div style="font-size:11px;color:var(--gray);line-height:1.5;">Resolución 2–5 cm/píxel</div>
+        </div>
+        <div class="abt-card sr-child" style="--sd:.2s">
+          <div style="font-size:24px;margin-bottom:8px;">🗺️</div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal);margin-bottom:4px;">Análisis SIG</div>
+          <div style="font-size:11px;color:var(--gray);line-height:1.5;">25 capas · 2008–2024</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ░░░ TOOLS ░░░ -->
+  <div class="section sr" id="tools-sec" style="background:var(--bg2);">
+    <div style="text-align:center;margin-bottom:52px;">
+      <div class="section-eyebrow">Suite completa</div>
+      <h2 class="section-title" style="font-size:36px;">Todo lo que Necesitas</h2>
+      <p style="font-size:14px;color:var(--gray);max-width:520px;margin:0 auto;">Recursos digitales para la investigación y docencia en ciencias costeras.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;" id="tools-grid">
+      <div class="tool-card sr-child" style="--sd:.00s" onclick="goTo('visor')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><circle cx="20" cy="20" r="16" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".3"/><circle cx="20" cy="20" r="10" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><line x1="4" y1="20" x2="36" y2="20" stroke="#2dd4bf" stroke-width="1"/><line x1="20" y1="4" x2="20" y2="36" stroke="#2dd4bf" stroke-width="1"/><circle cx="20" cy="20" r="2.5" fill="#2dd4bf"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Visor Geoespacial</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">25 capas interactivas con datos de geología, vulnerabilidad y sedimentología.</div>
+        <div class="tool-cta">Explorar mapas →</div>
+      </div>
+      <div class="tool-card sr-child" style="--sd:.08s" onclick="goTo('modelos')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><path d="M20 4L34 12v16L20 36 6 28V12L20 4z" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".3"/><path d="M20 10L30 16v8L20 30 10 24v-8L20 10z" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><line x1="20" y1="10" x2="20" y2="20" stroke="#2dd4bf" stroke-width="1.2"/><line x1="30" y1="16" x2="20" y2="20" stroke="#2dd4bf" stroke-width="1.2"/><line x1="10" y1="16" x2="20" y2="20" stroke="#2dd4bf" stroke-width="1.2"/><circle cx="20" cy="20" r="2" fill="#2dd4bf"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Modelos 3D</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">50+ modelos tridimensionales de alta precisión de playas, acantilados y formaciones.</div>
+        <div class="tool-cta">Ver modelos →</div>
+      </div>
+      <div class="tool-card sr-child" style="--sd:.16s" onclick="goTo('timeline')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><circle cx="20" cy="20" r="15" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".3"/><circle cx="20" cy="20" r="1.5" fill="#2dd4bf"/><path d="M20 9v11l6 6" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round"/><path d="M8 20h2M30 20h2M20 8v2M20 30v2" stroke="#2dd4bf" stroke-width="1.2" stroke-linecap="round"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Línea del Tiempo</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">Comparación multitemporal 2008–2024 con análisis de erosión y acumulación.</div>
+        <div class="tool-cta">Analizar cambios →</div>
+      </div>
+      <div class="tool-card sr-child" style="--sd:.24s" onclick="goTo('vulnerabilidad')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><path d="M20 4L34 10v14Q34 30 20 36Q6 30 6 24V10L20 4z" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".3"/><path d="M20 10L28 14v10Q28 27 20 31Q12 27 12 24V14L20 10z" stroke="#2dd4bf" stroke-width="1.5" fill="none"/><path d="M15 21l4 4 7-7" stroke="#2dd4bf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Vulnerabilidad Costera</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">Índice con 6 variables ambientales. Mapa interactivo por zonas del litoral.</div>
+        <div class="tool-cta">Ver vulnerabilidad →</div>
+      </div>
+      <div class="tool-card sr-child" style="--sd:.32s" onclick="goTo('datos')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><ellipse cx="20" cy="13" rx="12" ry="4" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".4"/><path d="M8 13v7c0 2.2 5.37 4 12 4s12-1.8 12-4v-7" stroke="#2dd4bf" stroke-width="1.5"/><path d="M8 20v7c0 2.2 5.37 4 12 4s12-1.8 12-4v-7" stroke="#2dd4bf" stroke-width="1.5"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Datos y Resultados</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">30+ productos científicos en PDF, SHP, TIFF, XLSX y más formatos abiertos.</div>
+        <div class="tool-cta">Descargar datos →</div>
+      </div>
+      <div class="tool-card sr-child" style="--sd:.40s" onclick="goTo('multimedia')">
+        <div class="tool-card-glow"></div>
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" style="margin-bottom:16px;"><rect x="6" y="10" width="28" height="20" rx="2" stroke="#2dd4bf" stroke-width="1.5" fill="none" opacity=".3"/><rect x="10" y="14" width="20" height="12" rx="1" stroke="#2dd4bf" stroke-width="1.2" fill="none"/><path d="M17 17l8 4-8 4v-8z" fill="#2dd4bf" opacity=".7"/></svg>
+        <div style="font-size:15px;font-weight:700;margin-bottom:8px;">Multimedia</div>
+        <div style="font-size:12px;color:var(--gray);line-height:1.6;margin-bottom:16px;">Fotos aéreas 4K, videos de dron y material audiovisual del trabajo de campo.</div>
+        <div class="tool-cta">Ver galería →</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░░ PLAYAS ░░░ -->
+  <div class="section sr" id="playas-sec">
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="section-eyebrow">Sitios de Estudio</div>
+      <h2 class="section-title" style="font-size:34px;">Playas del Litoral de Manzanillo</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div class="playa-card sr-child" style="--sd:.00s" onclick="goTo('visor')">
+        <div class="playa-img" style="background:linear-gradient(135deg,#1a4a2e,#0d7490 80%);">🏖️</div>
+        <div class="playa-info">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Playa La Audiencia</div>
+          <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">Bahía de Santiago</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;"><span class="tag">0.85 km</span><span class="tag">Arenosa</span></div>
+          <div class="vuln-pill vuln-media">● Media</div>
+        </div>
+      </div>
+      <div class="playa-card sr-child" style="--sd:.08s" onclick="goTo('visor')">
+        <div class="playa-img" style="background:linear-gradient(135deg,#0d2a4a,#0d7490 80%);">🌊</div>
+        <div class="playa-info">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Playa Olas Altas</div>
+          <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">Bahía de Manzanillo</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;"><span class="tag">1.25 km</span><span class="tag">Erosión activa</span></div>
+          <div class="vuln-pill vuln-alta">● Alta</div>
+        </div>
+      </div>
+      <div class="playa-card sr-child" style="--sd:.16s" onclick="goTo('visor')">
+        <div class="playa-img" style="background:linear-gradient(135deg,#2a0d0d,#6b2010 80%);">🌅</div>
+        <div class="playa-info">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Playa Miramar</div>
+          <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">Bahía de Manzanillo</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;"><span class="tag">3.2 km</span><span class="tag">Arenosa</span></div>
+          <div class="vuln-pill vuln-alta">● Alta</div>
+        </div>
+      </div>
+      <div class="playa-card sr-child" style="--sd:.24s" onclick="goTo('visor')">
+        <div class="playa-img" style="background:linear-gradient(135deg,#1a2a0d,#3a6a20 80%);">🏔️</div>
+        <div class="playa-info">
+          <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Punta Chica</div>
+          <div style="font-size:10px;color:var(--gray);margin-bottom:10px;">Litoral rocoso</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;"><span class="tag">0.4 km</span><span class="tag">Acantilado</span></div>
+          <div class="vuln-pill vuln-alta">● Alta</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ░░░ CTA ░░░ -->
+  <div class="sr" style="background:linear-gradient(135deg,#0d1520,#111c2e);border-top:1px solid rgba(45,212,191,.12);padding:88px 64px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 100%,rgba(45,212,191,.07),transparent 70%);pointer-events:none;"></div>
+    <div style="position:relative;z-index:1;max-width:600px;margin:0 auto;">
+      <div class="section-eyebrow" style="justify-content:center;display:flex;">¿Listo para explorar?</div>
+      <h2 style="font-size:44px;font-weight:900;letter-spacing:-1px;margin:12px 0 16px;">Comienza tu Recorrido</h2>
+      <p style="font-size:15px;color:rgba(255,255,255,.55);margin-bottom:36px;line-height:1.7;">Explora el litoral de Manzanillo con nuestras herramientas interactivas de investigación costera científica.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-primary" style="font-size:13px;padding:14px 36px;" onclick="goTo('visor')">🗺️ Comenzar Ahora</button>
+        <button class="btn-outline" style="font-size:13px;padding:14px 36px;" onclick="goTo('proyecto')">Conocer el Proyecto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <img src="data:image/png;base64,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" alt="UNAM" style="height:38px;width:auto;object-fit:contain;">
+          <div><div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;">Atlas Digital</div><div style="font-size:11px;color:var(--gray);">Litoral de Manzanillo · UNAM</div></div>
+        </div>
+        <p style="font-size:12px;color:var(--gray);line-height:1.8;max-width:280px;">Investigación científica para comprender la dinámica costera y la vulnerabilidad del territorio de Manzanillo, Colima.</p>
+      </div>
+      <div><div class="footer-col-title">Explorar</div><div class="footer-link" onclick="goTo('visor')">→ Visor Geoespacial</div><div class="footer-link" onclick="goTo('modelos')">→ Modelos 3D</div><div class="footer-link" onclick="goTo('timeline')">→ Línea del Tiempo</div><div class="footer-link" onclick="goTo('vulnerabilidad')">→ Vulnerabilidad</div><div class="footer-link" onclick="goTo('multimedia')">→ Multimedia</div></div>
+      <div><div class="footer-col-title">Recursos</div><div class="footer-link" onclick="goTo('datos')">→ Datos y Resultados</div><div class="footer-link" onclick="goTo('proyecto')">→ El Proyecto</div><div class="footer-link" onclick="goTo('participantes')">→ Participantes</div><div class="footer-link">→ Documentación</div></div>
+      <div><div class="footer-col-title">Contacto</div><div class="footer-link">papit.litoral@ingenieria.unam.mx</div><div style="margin-top:14px;font-size:11px;color:var(--gray2);line-height:1.9;">Facultad de Ingeniería, UNAM<br>Ciudad de México, México</div></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Universidad Nacional Autónoma de México. Todos los derechos reservados.</div>
+      <div style="display:flex;gap:16px;font-size:11px;color:var(--gray2);"><span style="cursor:pointer">Privacidad</span><span>•</span><span style="cursor:pointer">Términos</span><span>•</span><span style="cursor:pointer">Accesibilidad</span></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════ 2. PROYECTO ══════════ -->

@@ -1,0 +1,43 @@
+<div class="page" id="page-vulnerabilidad">
+  <div class="vuln-layout">
+    <div class="vuln-panel" style="background:rgba(13,21,32,0.97);backdrop-filter:blur(12px);">
+      <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;">
+        PELIGRO COSTERO
+      </div>
+      <div style="margin-bottom:20px;">
+        <div class="legend-item" style="animation:slideInLeft .4s ease .1s both;"><div class="legend-dot" style="background:#22c55e;box-shadow:0 0 8px rgba(34,197,94,.5)"></div><div><div style="font-size:12px;">Muy baja</div><div style="font-size:10px;color:var(--gray2);">0.0 – 0.2</div></div></div>
+        <div class="legend-item" style="animation:slideInLeft .4s ease .2s both;"><div class="legend-dot" style="background:#38bdf8;box-shadow:0 0 8px rgba(56,189,248,.5)"></div><div><div style="font-size:12px;">Baja</div><div style="font-size:10px;color:var(--gray2);">0.2 – 0.4</div></div></div>
+        <div class="legend-item" style="animation:slideInLeft .4s ease .3s both;"><div class="legend-dot" style="background:#eab308;box-shadow:0 0 8px rgba(234,179,8,.5)"></div><div><div style="font-size:12px;">Media</div><div style="font-size:10px;color:var(--gray2);">0.4 – 0.6</div></div></div>
+        <div class="legend-item" style="animation:slideInLeft .4s ease .4s both;"><div class="legend-dot" style="background:#f97316;box-shadow:0 0 8px rgba(249,115,22,.5)"></div><div><div style="font-size:12px;">Alta</div><div style="font-size:10px;color:var(--gray2);">0.6 – 0.8</div></div></div>
+        <div class="legend-item" style="animation:slideInLeft .4s ease .5s both;"><div class="legend-dot" style="background:#ef4444;box-shadow:0 0 8px rgba(239,68,68,.5)"></div><div><div style="font-size:12px;">Muy alta</div><div style="font-size:10px;color:var(--gray2);">0.8 – 1.0</div></div></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:16px;margin-bottom:16px;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--teal);margin-bottom:12px;">VARIABLES CONSIDERADAS</div>
+        <div class="var-item"><input type="checkbox" checked> Erosión costera</div>
+        <div class="var-item"><input type="checkbox" checked> Pendiente del dren arenoso</div>
+        <div class="var-item"><input type="checkbox" checked> Tipo de roca/sedimento</div>
+        <div class="var-item"><input type="checkbox" checked> Oleaje y exposición</div>
+        <div class="var-item"><input type="checkbox"> Huracanes históricos</div>
+        <div class="var-item"><input type="checkbox"> Uso de suelo</div>
+      </div>
+      <button class="meto-btn">METODOLOGÍA</button>
+      <button class="dl-map-btn" style="margin-top:8px;">⬇ DESCARGAR MAPA</button>
+    </div>
+    <div class="vuln-map-wrap">
+      <div class="vuln-map-bg"></div>
+      <div class="vuln-coast"></div>
+      <div class="map-grid"></div>
+      <div class="map-controls"><div class="map-btn">N</div><div class="map-btn" style="margin-top:6px;">+</div><div class="map-btn">−</div></div>
+      <div class="map-popup" style="top:18%;right:56px;animation:slideInRight .5s ease .3s both;">
+        <div class="popup-title">Playa Miramar</div>
+        <div class="popup-row"><span class="popup-label">Índice:</span><span class="popup-val" style="color:#f97316;">Alto</span></div>
+        <div class="popup-row"><span class="popup-label">Puntaje:</span><span class="popup-val">0.72</span></div>
+        <div class="popup-row"><span class="popup-label">Categoría:</span><span class="popup-val" style="color:#f97316;">■ Alta</span></div>
+        <div class="popup-link">Ver detalle →</div>
+      </div>
+      <div class="map-scale"><span>0</span><div class="scale-line"></div><span>1</span><span style="margin-left:20px;">2 km</span></div>
+      <div class="map-coords">19.051° N, 104.313° O</div>
+    </div>
+  </div>
+</div>
+

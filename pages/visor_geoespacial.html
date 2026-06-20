@@ -1,0 +1,94 @@
+<div class="page" id="page-visor">
+  <div class="visor-layout">
+    <!-- PANEL IZQUIERDO -->
+    <div class="visor-panel">
+      <div class="vpanel-title">CAPAS <span style="cursor:pointer;color:var(--gray2);font-size:13px;" onclick="toggleVisorPanel()">✕</span></div>
+      <div class="layer-group">
+        <div class="layer-item"><input type="checkbox" id="lyr-geo"><label for="lyr-geo">Geología</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-geo2"><label for="lyr-geo2">Geomorfología</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-perfiles" checked><label for="lyr-perfiles">Perfiles de playa</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-sed"><label for="lyr-sed">Sedimentología</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-min"><label for="lyr-min">Mineralogía</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-costa" checked><label for="lyr-costa">Líneas de costa</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-vuln" checked><label for="lyr-vuln">Vulnerabilidad</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-uso"><label for="lyr-uso">Uso de suelo</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-orto"><label for="lyr-orto">Ortosmosaicos</label></div>
+        <div class="layer-item"><input type="checkbox" id="lyr-hura"><label for="lyr-hura">Huracanes históricos</label></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:14px;margin-top:6px;">
+        <div class="vpanel-title">HERRAMIENTAS</div>
+        <div class="tool-item" onclick="visorTool('distancia')" id="tool-distancia">
+          <svg class="tool-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><line x1="2" y1="14" x2="14" y2="2" stroke="#2dd4bf" stroke-width="1.5"/><line x1="2" y1="14" x2="2" y2="11" stroke="#2dd4bf" stroke-width="1.5"/><line x1="2" y1="14" x2="5" y2="14" stroke="#2dd4bf" stroke-width="1.5"/></svg>
+          <span class="tool-label">Medir distancia</span>
+        </div>
+        <div class="tool-item" onclick="visorTool('area')" id="tool-area">
+          <svg class="tool-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="12" height="12" stroke="#2dd4bf" stroke-width="1.5" rx="1"/><line x1="5" y1="8" x2="11" y2="8" stroke="#2dd4bf" stroke-width="1"/><line x1="8" y1="5" x2="8" y2="11" stroke="#2dd4bf" stroke-width="1"/></svg>
+          <span class="tool-label">Medir área</span>
+        </div>
+        <div class="tool-item" onclick="visorTool('info')" id="tool-info">
+          <svg class="tool-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#2dd4bf" stroke-width="1.5"/><line x1="8" y1="7" x2="8" y2="11" stroke="#2dd4bf" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.8" fill="#2dd4bf"/></svg>
+          <span class="tool-label">Información</span>
+        </div>
+        <div class="tool-item" onclick="window.print()">
+          <svg class="tool-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="6" width="10" height="7" stroke="#2dd4bf" stroke-width="1.5" rx="1"/><path d="M5 6V3h6v3" stroke="#2dd4bf" stroke-width="1.5"/><line x1="5" y1="10" x2="11" y2="10" stroke="#2dd4bf" stroke-width="1"/></svg>
+          <span class="tool-label">Imprimir mapa</span>
+        </div>
+        <div class="tool-item" onclick="shareVisor()">
+          <svg class="tool-icon" width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="13" cy="3" r="2" stroke="#2dd4bf" stroke-width="1.2"/><circle cx="13" cy="13" r="2" stroke="#2dd4bf" stroke-width="1.2"/><circle cx="3" cy="8" r="2" stroke="#2dd4bf" stroke-width="1.2"/><line x1="5" y1="7" x2="11" y2="4" stroke="#2dd4bf" stroke-width="1.2"/><line x1="5" y1="9" x2="11" y2="12" stroke="#2dd4bf" stroke-width="1.2"/></svg>
+          <span class="tool-label">Compartir</span>
+        </div>
+      </div>
+      <button class="dl-map-btn" onclick="alert('Descarga de mapa en formato PDF/SHP disponible en Datos y Resultados')">⬇ DESCARGAR MAPA</button>
+    </div>
+
+    <!-- MAPA LEAFLET -->
+    <div style="flex:1;position:relative;">
+      <div id="visor-map-leaflet" style="width:100%;height:100%;"></div>
+
+      <!-- Selector de capa base -->
+      <div id="basemap-toggle" style="position:absolute;top:16px;left:16px;z-index:1000;display:flex;gap:6px;">
+        <button onclick="setBasemap('satellite')" id="btn-sat" style="padding:6px 12px;font-size:10px;font-weight:700;font-family:inherit;background:rgba(45,212,191,1);color:#0a0f1a;border:none;cursor:pointer;border-radius:3px;letter-spacing:.5px;">SATÉLITE</button>
+        <button onclick="setBasemap('osm')" id="btn-osm" style="padding:6px 12px;font-size:10px;font-weight:700;font-family:inherit;background:rgba(13,21,32,0.9);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.2);cursor:pointer;border-radius:3px;letter-spacing:.5px;">MAPA</button>
+      </div>
+
+      <!-- Tooltip medición -->
+      <div id="measure-tip" style="display:none;position:absolute;top:60px;left:16px;z-index:1000;background:rgba(13,21,32,.92);border:1px solid var(--teal);padding:10px 14px;font-size:11px;color:var(--white);border-radius:4px;backdrop-filter:blur(8px);">
+        <span id="measure-txt">Haz clic en el mapa para medir</span><br>
+        <span style="color:var(--gray);font-size:10px;">Clic derecho para cancelar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Leaflet popup personalizado */
+.leaflet-popup-content-wrapper {
+  background: rgba(13,21,32,0.95) !important;
+  border: 1px solid rgba(45,212,191,0.4) !important;
+  border-radius: 4px !important;
+  color: white !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6) !important;
+}
+.leaflet-popup-tip { background: rgba(13,21,32,0.95) !important; }
+.leaflet-popup-content { margin: 14px 18px !important; }
+.lpop-title { font-size:14px;font-weight:700;color:#2dd4bf;margin-bottom:10px;border-bottom:1px solid rgba(45,212,191,0.2);padding-bottom:8px; }
+.lpop-row { display:flex;justify-content:space-between;font-size:11px;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.05); }
+.lpop-label { color:#94a3b8; }
+.lpop-val { color:#fff;font-weight:600; }
+.lpop-link { font-size:11px;color:#2dd4bf;margin-top:10px;display:block;cursor:pointer;text-decoration:underline; }
+.lpop-alta { color:#ef4444 !important; }
+.lpop-media { color:#f97316 !important; }
+.lpop-baja { color:#22c55e !important; }
+.leaflet-control-zoom { border: 1px solid rgba(255,255,255,0.15) !important; }
+.leaflet-control-zoom a { background: rgba(13,21,32,0.92) !important; color: white !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+.leaflet-control-zoom a:hover { background: rgba(45,212,191,0.2) !important; }
+.leaflet-control-attribution { background: rgba(13,21,32,0.7) !important; color: rgba(255,255,255,0.4) !important; font-size:9px !important; }
+.leaflet-control-attribution a { color: rgba(255,255,255,0.4) !important; }
+.tool-item.active-tool { background: rgba(45,212,191,0.12); border-radius:4px; }
+.tool-item.active-tool .tool-label { color: #2dd4bf; }
+</style>
+
+
+
+<!-- ══════════ 4. MODELOS 3D ══════════ -->

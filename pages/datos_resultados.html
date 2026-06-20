@@ -1,0 +1,96 @@
+<div class="page" id="page-datos">
+  <div class="datos-layout">
+    <div class="datos-sidebar" style="background:rgba(13,21,32,0.97);">
+      <div style="padding:0 0 20px;margin-bottom:20px;border-bottom:1px solid var(--border);">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:4px;">Repositorio</div>
+        <div style="font-size:16px;font-weight:800;">FILTRAR POR</div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">TIPO DE PRODUCTO</span>
+        <select class="filter-select" id="filter-tipo" onchange="applyFilters()">
+          <option value="">Todos</option>
+          <option value="mapa">Mapas</option>
+          <option value="perfil">Perfiles</option>
+          <option value="orto">Ortomosaicos</option>
+          <option value="analisis">Análisis</option>
+          <option value="base">Bases de datos</option>
+          <option value="articulo">Artículos</option>
+          <option value="modelo">Modelos digitales</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">PLAYA / SITIO</span>
+        <select class="filter-select" id="filter-playa" onchange="applyFilters()">
+          <option value="">Todos</option>
+          <option>La Audiencia</option>
+          <option>Olas Altas</option>
+          <option>Miramar</option>
+          <option>Santiago</option>
+          <option>Litoral completo</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">AÑO</span>
+        <select class="filter-select" id="filter-año" onchange="applyFilters()">
+          <option value="">Todos</option>
+          <option>2024</option>
+          <option>2023</option>
+          <option>2022</option>
+          <option>2021</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">CATEGORÍA</span>
+        <select class="filter-select" id="filter-cat" onchange="applyFilters()">
+          <option value="">Todas</option>
+          <option>Geología</option>
+          <option>Vulnerabilidad</option>
+          <option>Sedimentología</option>
+          <option>Fotogrametría</option>
+        </select>
+      </div>
+      <button onclick="clearFilters()" style="width:100%;padding:10px;background:transparent;border:1px solid rgba(255,255,255,.2);color:var(--gray);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;font-family:inherit;border-radius:4px;margin-top:8px;transition:all .2s;" onmouseover="this.style.borderColor='var(--teal)';this.style.color='var(--teal)'" onmouseout="this.style.borderColor='rgba(255,255,255,.2)';this.style.color='var(--gray)'">LIMPIAR FILTROS</button>
+    </div>
+
+    <div class="datos-body">
+      <div class="sr" style="margin-bottom:28px;">
+        <div style="font-size:10px;letter-spacing:2px;color:var(--teal);text-transform:uppercase;font-weight:600;margin-bottom:8px;">Descarga abierta</div>
+        <h2 style="font-size:36px;font-weight:900;letter-spacing:-1px;margin-bottom:4px;">REPOSITORIO CIENTÍFICO</h2>
+        <p style="font-size:13px;color:var(--gray);">Consulta y descarga los productos generados en el proyecto.</p>
+      </div>
+      <!-- Stats -->
+      <div class="sr" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;">
+        <div style="background:var(--card);border:1px solid var(--border);padding:16px;border-radius:8px;text-align:center;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.35)'" onmouseout="this.style.borderColor=''"><div style="font-size:28px;font-weight:900;color:var(--teal);">30+</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Productos</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:16px;border-radius:8px;text-align:center;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.35)'" onmouseout="this.style.borderColor=''"><div style="font-size:28px;font-weight:900;color:var(--teal);">6</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Formatos</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:16px;border-radius:8px;text-align:center;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.35)'" onmouseout="this.style.borderColor=''"><div style="font-size:28px;font-weight:900;color:var(--teal);">∞</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Acceso libre</div></div>
+        <div style="background:var(--card);border:1px solid var(--border);padding:16px;border-radius:8px;text-align:center;transition:border-color .3s;" onmouseover="this.style.borderColor='rgba(45,212,191,.35)'" onmouseout="this.style.borderColor=''"><div style="font-size:28px;font-weight:900;color:var(--teal);">CC</div><div style="font-size:10px;color:var(--gray);margin-top:3px;">Licencia abierta</div></div>
+      </div>
+      <!-- Table -->
+      <div class="sr">
+        <table class="datos-tbl" id="datos-table">
+          <thead>
+            <tr>
+              <th>PRODUCTO</th>
+              <th>DESCRIPCIÓN</th>
+              <th>AÑO</th>
+              <th>FORMATO</th>
+              <th>TAMAÑO</th>
+              <th>DESCARGAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="datos-row"><td><span style="margin-right:8px;">🗺️</span>Mapa geológico</td><td style="color:var(--gray);">Mapa geológico del litoral de Manzanillo</td><td>2024</td><td><span class="fmt-badge">PDF</span></td><td style="color:var(--gray);font-size:11px;">8.4 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">📐</span>Perfiles de playa</td><td style="color:var(--gray);">Perfiles topográficos de playas seleccionadas</td><td>2024</td><td><span class="fmt-badge">SHP</span></td><td style="color:var(--gray);font-size:11px;">5.2 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">🛰️</span>Ortosmosaico 2024</td><td style="color:var(--gray);">Ortosmosaico puntual resolución 5 cm</td><td>2024</td><td><span class="fmt-badge">TIFF</span></td><td style="color:var(--gray);font-size:11px;">1.2 GB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">⚠️</span>Análisis de vulnerabilidad</td><td style="color:var(--gray);">Índice de vulnerabilidad costera</td><td>2024</td><td><span class="fmt-badge">PDF</span></td><td style="color:var(--gray);font-size:11px;">3.1 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">📊</span>Base de datos sedimentológica</td><td style="color:var(--gray);">Base de datos muestras de sedimentos</td><td>2023</td><td><span class="fmt-badge">XLSX</span></td><td style="color:var(--gray);font-size:11px;">2.7 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">📄</span>Artículo: Dinámica costera</td><td style="color:var(--gray);">Evolución multitemporal del litoral</td><td>2023</td><td><span class="fmt-badge">PDF</span></td><td style="color:var(--gray);font-size:11px;">2.3 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+            <tr class="datos-row"><td><span style="margin-right:8px;">🏔️</span>Modelo digital de elevación</td><td style="color:var(--gray);">MDE del litoral de Manzanillo</td><td>2023</td><td><span class="fmt-badge">TIFF</span></td><td style="color:var(--gray);font-size:11px;">956 MB</td><td><button class="dl-icon-btn" title="Descargar">⬇</button></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:24px;text-align:center;font-size:12px;color:var(--gray);">¿No encuentras lo que buscas? <span style="color:var(--teal);cursor:pointer;text-decoration:underline;">Contáctanos</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas Digital del Litoral de Manzanillo</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <p style="padding: 40px; color: #94a3b8; font-family: sans-serif">
+        Cargando sitio…
+      </p>
+    </div>
+
+    <script>
+      // ════════════════════════════════════════════════════════
+      // CARGADOR: une navbar.html + cada página de /pages/ en #app
+      // ════════════════════════════════════════════════════════
+      const PAGES = [
+        "navbar.html",
+        "inicio.html",
+        "proyecto.html",
+        "visor_geoespacial.html",
+        "modelos_3d.html",
+        "linea_del_tiempo.html",
+        "peligro_costero.html",
+        "datos_resultados.html",
+        "participantes.html",
+        "galeria.html",
+      ];
+
+      async function loadSite() {
+        try {
+          const responses = await Promise.all(
+            PAGES.map((p) =>
+              fetch("pages/" + p).then((r) => {
+                if (!r.ok) throw new Error("No se pudo cargar " + p);
+                return r.text();
+              }),
+            ),
+          );
+          document.getElementById("app").innerHTML = responses.join("\n");
+
+          // Cargar main.js despues de insertar el HTML (para que goTo() y demás existan)
+          const script = document.createElement("script");
+          script.src = "js/main.js";
+          document.body.appendChild(script);
+        } catch (err) {
+          // Esto ocurre si el archivo se abre con doble-clic (file://) sin servidor local
+          document.getElementById("app").innerHTML = `
+      <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0a0f1a;color:#fff;font-family:sans-serif;padding:40px;">
+        <div style="max-width:560px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">⚠️</div>
+          <h1 style="font-size:22px;margin-bottom:16px;">No se pudo cargar el sitio</h1>
+          <p style="color:#94a3b8;line-height:1.7;margin-bottom:20px;font-size:14px;">
+            Este sitio está dividido en varios archivos (HTML, CSS, JS) y los navegadores
+            bloquean la carga de archivos locales por seguridad (CORS) cuando se abre
+            haciendo doble clic.
+          </p>
+          <p style="color:#94a3b8;line-height:1.7;margin-bottom:20px;font-size:14px;">
+            <strong style="color:#2dd4bf;">Soluciones:</strong><br><br>
+            1️⃣ Usa un servidor local. Abre una terminal en esta carpeta y ejecuta:<br>
+            <code style="background:#172236;padding:6px 12px;border-radius:4px;display:inline-block;margin-top:8px;">python3 -m http.server 8000</code><br>
+            luego abre <code style="background:#172236;padding:4px 10px;border-radius:4px;">http://localhost:8000</code> en tu navegador.<br><br>
+            2️⃣ O usa la extensión <strong>"Live Server"</strong> de VS Code (clic derecho → "Open with Live Server").<br><br>
+            3️⃣ O usa el archivo <strong>atlas_litoral_manzanillo_completo.html</strong> (todo en un solo archivo, funciona con doble clic).
+          </p>
+          <p style="color:#64748b;font-size:12px;">Error técnico: ${err.message}</p>
+        </div>
+      </div>
+    `;
+        }
+      }
+
+      loadSite();
+    </script>
+  </body>
+</html>
