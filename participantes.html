@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Participantes · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Equipo de investigación, técnicos, estudiantes, colaboradores e instituciones que participan en el proyecto PAPIIT IF100926 sobre el litoral de Manzanillo.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Participantes · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Equipo de investigación, técnicos, estudiantes, colaboradores e instituciones que participan en el proyecto PAPIIT IF100926 sobre el litoral de Manzanillo."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/participantes.css">
+</head>
+<body data-page="participantes">
+<div id="app-header"></div>
+<main id="contenido">
+<header class="page-hero" style="background-image:url(assets/img/hero/fondo-proyecto.jpg)"><div class="container">
+<p class="eyebrow">Equipo de trabajo</p><h1>Participantes</h1>
+<p>Conoce al equipo de investigación e instituciones que participan en el proyecto.</p></div></header>
+<div class="container par-wrap">
+ <div class="par-top"><div class="tabs par-tabs" id="par-tabs" role="tablist"></div>
+  <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input" id="par-q" type="search" placeholder="Buscar participante o institución…" aria-label="Buscar"></div></div>
+ <div class="par-grid" id="par-grid" role="tabpanel"></div>
+ <div class="par-more"><button class="btn btn-outline" id="par-all">Ver a todos los participantes</button></div>
+</div>
+</main>
+<div id="app-footer"></div>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/participantes.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/participantes.js"></script>
+</body>
+</html>

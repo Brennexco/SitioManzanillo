@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Modelos 3D · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Explora los modelos tridimensionales del litoral de Manzanillo obtenidos mediante fotogrametría y escaneo: playas, acantilados, formaciones rocosas, perfiles costeros y modelos topográficos.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Modelos 3D · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Explora los modelos tridimensionales del litoral de Manzanillo obtenidos mediante fotogrametría y escaneo: playas, acantilados, formaciones rocosas, perfiles costeros y modelos topográficos."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/modelos.css">
+</head>
+<body data-page="modelos">
+<div id="app-header"></div>
+<main id="contenido" class="mod-main">
+<div class="container mod-layout">
+  <aside class="mod-side">
+    <h1>Modelos 3D</h1>
+    <p>Explora los modelos tridimensionales del litoral de Manzanillo mediante fotogrametría y escaneo.</p>
+    <nav class="cat-box card" aria-label="Categorías"><h2>Categorías</h2><div id="cat-list"></div></nav>
+  </aside>
+  <section class="mod-content">
+    <div class="mod-bar">
+      <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input" id="m-q" type="search" placeholder="Buscar modelos…" aria-label="Buscar modelos"></div>
+      <select class="select" id="m-sitio" aria-label="Sitio"><option value="">Todos los sitios</option></select>
+      <select class="select" id="m-orden" aria-label="Ordenar"><option value="rec">Más recientes</option><option value="az">Nombre (A–Z)</option><option value="res">Mayor resolución</option></select>
+    </div>
+    <p class="mod-count" id="m-count"></p>
+    <div class="mod-grid" id="mod-grid"></div>
+    <p class="mod-foot">Visualización 3D interactiva con Sketchfab</p>
+  </section>
+</div>
+</main>
+
+<div class="mv" id="mv" role="dialog" aria-modal="true" aria-labelledby="mv-title">
+  <div class="mv-box">
+    <button class="mv-x" id="mv-x" aria-label="Cerrar">✕</button>
+    <div class="mv-view" id="mv-view"><div id="m3d"></div><iframe id="mv-ifr" title="Modelo 3D en Sketchfab" hidden></iframe><div class="mv-msg" id="mv-msg"></div>
+      <div class="mv-tools" id="mv-tools"><button id="t-rot" class="on">⟳ Rotación</button><button id="t-wire">▦ Malla</button><label>Exageración <b id="t-ev">1.0×</b><input id="t-ex" type="range" min="0.2" max="3" step="0.1" value="1"></label><button id="t-reset">⌖ Vista</button><button id="t-full">⛶ Pantalla completa</button><button id="t-shot">📷 Captura</button></div>
+      <div class="mv-hint" id="mv-hint">Arrastra para rotar · Rueda para zoom · Clic derecho para desplazar</div></div>
+    <div class="mv-info"><span class="badge" id="mv-cat"></span><h2 id="mv-title"></h2><p id="mv-lugar"></p>
+      <dl><div><dt>Técnica</dt><dd id="mv-tec"></dd></div><div><dt>Resolución</dt><dd id="mv-res"></dd></div><div><dt>Año</dt><dd id="mv-año"></dd></div><div><dt>Vértices</dt><dd id="mv-ver"></dd></div></dl>
+      <div class="mv-tags" id="mv-tags"></div>
+      <button class="btn btn-primary" id="mv-obj">Descargar malla (OBJ)</button>
+      <a class="btn btn-outline" id="mv-sk" target="_blank" rel="noopener" hidden>Abrir en Sketchfab</a>
+      <a class="btn btn-ghost" href="visor.html">Ver en el visor</a>
+      <p class="mv-note" id="mv-note"></p>
+      <div class="mv-nav"><button id="mv-prev">‹ Anterior</button><button id="mv-next">Siguiente ›</button></div></div>
+  </div>
+</div>
+<div id="app-footer"></div>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/modelos.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/modelos.js"></script>
+</body>
+</html>

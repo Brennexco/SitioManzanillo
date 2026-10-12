@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Línea del Tiempo · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Compara la evolución del litoral de Manzanillo entre 2008 y la actualidad: líneas de costa, erosión y acumulación, ortomosaicos, perfiles de playa, uso de suelo e infraestructura.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Línea del Tiempo · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Compara la evolución del litoral de Manzanillo entre 2008 y la actualidad: líneas de costa, erosión y acumulación, ortomosaicos, perfiles de playa, uso de suelo e infraestructura."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/timeline.css">
+</head>
+<body data-page="timeline">
+<div id="app-header"></div>
+<main id="contenido">
+<header class="page-hero tl-hero" style="background-image:url(assets/img/hero/fondo-proyecto.jpg)"><div class="container">
+<p class="eyebrow">Análisis multitemporal</p><h1>Línea del tiempo</h1><p>Explora los cambios del litoral de Manzanillo a través del tiempo.</p></div></header>
+<div class="container tl-wrap">
+ <div class="tl-axis card" id="tl-axis" role="group" aria-label="Años disponibles"></div>
+ <div class="tl-grid">
+  <div>
+   <div class="tl-stage" id="tl-stage">
+     <div class="tl-side tl-b" id="side-b"><img alt=""><svg preserveAspectRatio="xMidYMid slice"></svg><span class="tl-badge r" id="lab-b"></span></div>
+     <div class="tl-side tl-a" id="side-a"><img alt=""><svg preserveAspectRatio="xMidYMid slice"></svg><span class="tl-badge l" id="lab-a"></span></div>
+     <div class="tl-handle" id="tl-handle" role="slider" tabindex="0" aria-label="Deslizador de comparación" aria-valuemin="0" aria-valuemax="100"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+   </div>
+   <div class="tl-controls">
+     <div class="field"><label for="tl-base">Año base</label><select class="select" id="tl-base"></select></div>
+     <div class="field"><label for="tl-comp">Comparar con</label><select class="select" id="tl-comp"></select></div>
+     <button class="btn btn-outline btn-sm" id="tl-play">▶ Reproducir</button>
+     <button class="btn btn-ghost btn-sm" id="tl-swap">⇄ Intercambiar</button>
+   </div>
+   <p class="tl-note" id="tl-note"></p>
+  </div>
+  <aside class="tl-side-panel">
+   <section class="card"><h2>Capas comparables</h2><label class="chk"><input type="checkbox" data-l="costa" checked><span>Líneas de costa</span></label><label class="chk"><input type="checkbox" data-l="eros"><span>Erosión / Acumulación</span></label><label class="chk"><input type="checkbox" data-l="orto"><span>Ortomosaicos</span></label><label class="chk"><input type="checkbox" data-l="perf"><span>Perfiles de playa</span></label><label class="chk"><input type="checkbox" data-l="uso"><span>Uso de suelo</span></label><label class="chk"><input type="checkbox" data-l="infra"><span>Infraestructura</span></label></section>
+   <section class="card"><h2>Información</h2><div id="tl-info"></div>
+     <button class="btn btn-outline tl-dl" id="tl-dl">Descargar comparación</button></section>
+  </aside>
+ </div>
+</div>
+</main>
+<div id="app-footer"></div>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/timeline.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/timeline.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atlas Digital del Litoral de Manzanillo · PAPIIT IF100926 · UNAM</title>
+<meta name="description" content="Atlas digital interactivo del litoral de Manzanillo, Colima: visor geoespacial, modelos 3D, línea del tiempo, vulnerabilidad costera y repositorio científico. Proyecto PAPIIT IF100926, Facultad de Ingeniería, UNAM.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Atlas Digital del Litoral de Manzanillo · PAPIIT IF100926 · UNAM"><meta property="og:description" content="Atlas digital interactivo del litoral de Manzanillo, Colima: visor geoespacial, modelos 3D, línea del tiempo, vulnerabilidad costera y repositorio científico. Proyecto PAPIIT IF100926, Facultad de Ingeniería, UNAM."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/inicio.css">
+</head>
+<body data-page="inicio">
+<div id="app-header"></div>
+<main id="contenido">
+
+<section class="hero" id="hero">
+  <div class="hero-media" id="hero-media">
+    <img class="hero-img" src="assets/img/hero/hero-manzanillo.jpg" alt="Vista aérea del litoral de Manzanillo, Colima" fetchpriority="high">
+    <video id="hero-video" muted loop playsinline preload="metadata" poster="assets/img/hero/hero-manzanillo.jpg"><source src="assets/video/drone-manzanillo.mp4" type="video/mp4"></video>
+    <div class="hero-shade"></div><div class="hero-vignette"></div>
+  </div>
+  <canvas id="hero-fx" aria-hidden="true"></canvas>
+
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <span class="badge hero-badge reveal">PAPIIT IF100926</span>
+      <p class="eyebrow reveal" style="--d:.05s;margin-top:20px">Atlas digital</p>
+      <h1 class="hero-title reveal" style="--d:.12s">Litoral de<br><span class="grad-text">Manzanillo</span></h1>
+      <p class="hero-desc reveal" style="--d:.2s">Desarrollo de infraestructura académica digital interactiva para el análisis geoespacial de la vulnerabilidad costera en Manzanillo, Colima, con fotogrametría, modelado 3D y análisis remoto multitemporal.</p>
+      <div class="hero-cta reveal" style="--d:.28s">
+        <a class="btn btn-primary" href="visor.html">Explorar el atlas <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="proyecto.html">Conocer el proyecto</a>
+      </div>
+    </div>
+
+    <div class="hero-hud" aria-hidden="true">
+      <div class="reticle"><i></i><i></i><i></i><span class="reticle-dot"></span></div>
+      <div class="coords"><span>19° 03′ 45″ N</span><span>104° 19′ 33″ O</span></div>
+    </div>
+  </div>
+
+  <div class="hud-rail" aria-label="Accesos rápidos">
+    <span class="compass" title="Norte">N</span>
+    <a href="visor.html" title="Capas del visor"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5l12 6-12 6-12-6z"/><path d="M5 17l12 6 12-6"/><path d="M5 23l12 6 12-6"/></svg></a>
+    <a href="vulnerabilidad.html" title="Vulnerabilidad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></a>
+    <a href="visor.html#medir" title="Medir en el visor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg></a>
+    <button id="hud-share" title="Compartir enlace" aria-label="Compartir enlace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4M8.6 13.4l6.8 4"/></svg></button>
+  </div>
+  <button class="video-toggle" id="video-toggle" hidden aria-label="Pausar video">❚❚</button>
+  <a class="scroll-hint" href="#acceso" aria-label="Desplazar hacia abajo"><span></span></a>
+</section>
+
+<section class="container access" id="acceso">
+  <div class="access-grid">
+    <a class="access-card card hover reveal" style="--d:0.00s" href="visor.html"><div class="ac-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 30s9-8.2 9-15a9 9 0 10-18 0c0 6.8 9 15 9 15z"/><circle cx="17" cy="15" r="3.4"/></svg></div><h3>Visor geoespacial</h3><p>Explora mapas interactivos con capas de geología, geomorfología, sedimentos y vulnerabilidad costera.</p><span class="ac-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="access-card card hover reveal" style="--d:0.07s" href="modelos-3d.html"><div class="ac-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l11 6v13l-11 6-11-6V10z"/><path d="M6 10l11 6 11-6M17 16v13"/></svg></div><h3>Modelos 3D</h3><p>Visualiza modelos 3D de playas, acantilados, afloramientos y estructuras costeras.</p><span class="ac-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="access-card card hover reveal" style="--d:0.14s" href="linea-del-tiempo.html"><div class="ac-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="17" r="12"/><path d="M17 9v8l5 3"/></svg></div><h3>Línea del tiempo</h3><p>Analiza la evolución costera a través de imágenes y datos multitemporales.</p><span class="ac-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="access-card card hover reveal" style="--d:0.21s" href="vulnerabilidad.html"><div class="ac-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12c3-4 6-4 9 0s6 4 9 0 5-3 8-1"/><path d="M4 19c3-4 6-4 9 0s6 4 9 0 5-3 8-1"/><path d="M4 26c3-4 6-4 9 0s6 4 9 0 5-3 8-1"/></svg></div><h3>Vulnerabilidad costera</h3><p>Consulta los mapas y análisis de vulnerabilidad ante erosión, ascenso del nivel del mar y eventos extremos.</p><span class="ac-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="access-card card hover reveal" style="--d:0.28s" href="datos-resultados.html"><div class="ac-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="17" cy="8" rx="10" ry="4"/><path d="M7 8v9c0 2.2 4.5 4 10 4s10-1.8 10-4V8"/><path d="M7 17v9c0 2.2 4.5 4 10 4s10-1.8 10-4v-9"/></svg></div><h3>Datos y resultados</h3><p>Accede a informes, artículos, datasets, ortomosaicos y perfiles costeros.</p><span class="ac-go"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </div>
+  <div class="stats card reveal" id="stats">
+    <div class="stats-lead"><h2>Conociendo nuestro litoral</h2><p>Ciencia, tecnología y territorio para la toma de decisiones y la gestión costera sustentable.</p></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6" r="4"/><circle cx="33" cy="6" r="4"/><path d="M10 9l7 7M30 9l-7 7"/><rect x="15" y="14" width="10" height="7" rx="2"/><path d="M20 21v4"/></svg></span><b data-count="120" data-suffix="+">0+</b><small>Vuelos con dron RTK</small></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 5l12 6-12 6-12-6z"/><path d="M5 17l12 6 12-6"/><path d="M5 23l12 6 12-6"/></svg></span><b data-count="25" data-suffix="">0</b><small>Capas geoespaciales</small></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4l11 6v13l-11 6-11-6V10z"/><path d="M6 10l11 6 11-6M17 16v13"/></svg></span><b data-count="50" data-suffix="+">0+</b><small>Modelos 3D</small></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="17" r="12"/><path d="M17 9v8l5 3"/></svg></span><b data-count="4" data-suffix="">0</b><small>Periodos de análisis multitemporal</small></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h12l6 6v20H9z"/><path d="M21 4v6h6M13 16h10M13 21h10M13 26h6"/></svg></span><b data-count="30" data-suffix="+">0+</b><small>Productos científicos</small></div>
+    <div class="stat"><span class="stat-ic"><svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="20" cy="9" r="4.5"/><path d="M11 26c0-5 4-8 9-8s9 3 9 8"/><circle cx="8" cy="12" r="3.2"/><path d="M2 25c0-3.5 2.5-5.5 6-5.5"/><circle cx="32" cy="12" r="3.2"/><path d="M38 25c0-3.5-2.5-5.5-6-5.5"/></svg></span><b data-count="15" data-suffix="+">0+</b><small>Instituciones participantes</small></div>
+  </div>
+</section>
+
+<section class="section showcase">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Explora el atlas</span><h2>Todo el litoral en una sola plataforma</h2><p>Un visor tipo SIG para activar capas, explorar mapas, hacer zoom, abrir información y navegar el territorio, junto con modelos, series de tiempo y análisis científicos.</p></div>
+    <div class="show-grid">
+      <div class="show-tabs" role="tablist" id="show-tabs"></div>
+      <div class="show-view card" id="show-view" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section beaches">
+  <div class="container">
+    <div class="section-head reveal"><span class="eyebrow">Peligro costero</span><h2>Playas bajo análisis</h2><p>Índice de vulnerabilidad calculado a partir de seis variables ambientales. Selecciona una playa para ver su ficha completa.</p></div>
+    <div class="beach-grid" id="beach-grid"></div>
+    <p class="note reveal">Valores demostrativos del prototipo: se actualizarán con los resultados finales del proyecto.</p>
+  </div>
+</section>
+
+<section class="section inst">
+  <div class="container">
+    <div class="section-head reveal" style="text-align:center;margin-inline:auto"><span class="eyebrow">Colaboración</span><h2>Instituciones participantes</h2></div>
+    <div class="inst-row" id="inst-row"></div>
+  </div>
+</section>
+
+<section class="container cta">
+  <div class="cta-box reveal">
+    <div><h2>Navega el territorio, descarga los datos</h2><p>Todos los productos científicos del proyecto en un repositorio abierto: mapas, ortomosaicos, perfiles, artículos y datos SIG.</p></div>
+    <div class="cta-btns"><a class="btn btn-primary" href="visor.html">Abrir el visor <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-outline" href="datos-resultados.html">Ir al repositorio</a></div>
+  </div>
+</section>
+
+</main>
+<div id="app-footer"></div>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/playas.js"></script>
+<script src="js/data/participantes.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/inicio.js"></script>
+</body>
+</html>

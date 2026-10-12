@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vulnerabilidad Costera · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Índice de vulnerabilidad costera del litoral de Manzanillo: erosión, pendiente, litología, oleaje, huracanes y uso de suelo. Consulta puntajes, nivel de confianza, metodología y ranking por playa.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Vulnerabilidad Costera · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Índice de vulnerabilidad costera del litoral de Manzanillo: erosión, pendiente, litología, oleaje, huracanes y uso de suelo. Consulta puntajes, nivel de confianza, metodología y ranking por playa."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/vulnerabilidad.css">
+</head>
+<body data-page="vulnerabilidad" class="map-page">
+<div id="app-header"></div>
+<main id="contenido" class="map-stage">
+  <div class="vu-view" id="vu-view"><div class="vu-inner" id="vu-inner"><img src="assets/img/mapas/vulnerabilidad.jpg" alt="Mapa de vulnerabilidad costera de Manzanillo" draggable="false"><div id="vu-marks"></div></div></div>
+  <aside class="vu-panel" id="vu-panel">
+    <section><h2>Índice de vulnerabilidad</h2><div id="vu-legend"></div></section>
+    <section><h2>Variables consideradas</h2><div id="vu-vars"></div><p class="vu-hint">El índice se recalcula con las variables marcadas.</p>
+      <div class="vu-btns"><button class="btn btn-outline" id="vu-met">Metodología</button><button class="btn btn-ghost btn-sm" id="vu-rank">Ranking</button></div></section>
+  </aside>
+  <button class="vu-reopen hide" id="vu-reopen">☰ Panel</button>
+  <div class="vu-zoom" data-nodrag><button id="vu-in" aria-label="Acercar">+</button><button id="vu-out" aria-label="Alejar">−</button><button id="vu-home" aria-label="Restablecer vista">⌂</button></div>
+  <div class="vu-card hide" id="vu-card" data-nodrag></div>
+  <div class="vz-scale" id="vu-scale" style="left:300px"><div id="vu-sl" style="display:flex;justify-content:space-between"><span>0</span><span id="vu-s2"></span></div><i id="vu-bar" style="display:block;height:6px;border:2px solid #fff;border-top:0;margin-top:2px;width:120px"></i></div>
+</main>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/playas.js"></script>
+<script src="js/components/mapview.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/vulnerabilidad.js"></script>
+</body>
+</html>

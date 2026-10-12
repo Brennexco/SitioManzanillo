@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Datos y Resultados · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Repositorio científico del proyecto: informes, artículos, datasets, ortomosaicos, perfiles costeros y bases de datos del litoral de Manzanillo. Filtra y descarga.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Datos y Resultados · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Repositorio científico del proyecto: informes, artículos, datasets, ortomosaicos, perfiles costeros y bases de datos del litoral de Manzanillo. Filtra y descarga."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/datos.css">
+</head>
+<body data-page="datos">
+<div id="app-header"></div>
+<main id="contenido">
+<header class="page-hero" style="background-image:url(assets/img/hero/fondo-proyecto.jpg)"><div class="container">
+<p class="eyebrow">Repositorio científico</p><h1>Datos y resultados</h1>
+<p>Accede a informes, artículos, datasets, ortomosaicos, perfiles costeros y bases de datos generados por el proyecto.</p></div></header>
+<div class="container dat-wrap">
+ <div class="dat-filters card">
+  <div class="filters">
+   <div class="field"><label for="f-tipo">Tipo</label><select class="select" id="f-tipo"></select></div>
+   <div class="field"><label for="f-sitio">Playa / Sitio</label><select class="select" id="f-sitio"></select></div>
+   <div class="field"><label for="f-año">Año</label><select class="select" id="f-año"></select></div>
+   <div class="field"><label for="f-cat">Categoría</label><select class="select" id="f-cat"></select></div>
+   <button class="btn btn-ghost" id="f-clear">Limpiar filtros</button>
+  </div>
+  <div class="dat-search"><div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input class="input" id="f-q" type="search" placeholder="Buscar por nombre o descripción…" aria-label="Buscar"></div><span id="f-count"></span></div>
+ </div>
+ <div class="table-wrap"><div style="overflow:auto"><table class="table" id="dat-table"><thead><tr>
+  <th data-k="nombre" tabindex="0">Producto <i></i></th><th data-k="desc" tabindex="0">Descripción <i></i></th><th data-k="año" tabindex="0">Año <i></i></th><th data-k="formato" tabindex="0">Formato <i></i></th><th data-k="tamaño" tabindex="0">Tamaño <i></i></th><th>Descargar</th></tr></thead><tbody id="dat-body"></tbody></table></div></div>
+ <div class="dat-cta card"><p><b>¿No encuentras lo que buscas?</b> Contáctanos.</p><a class="btn btn-outline" id="dat-mail" href="#">Escribir al equipo</a></div>
+</div>
+</main>
+<div id="app-footer"></div>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/datos.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/datos.js"></script>
+</body>
+</html>

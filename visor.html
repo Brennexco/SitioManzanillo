@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Visor Geoespacial · Atlas Digital del Litoral de Manzanillo</title>
+<meta name="description" content="Visor geoespacial interactivo del litoral de Manzanillo: capas de geología, geomorfología, perfiles de playa, sedimentología, mineralogía, líneas de costa, vulnerabilidad y más.">
+<meta name="theme-color" content="#06111f">
+<meta property="og:title" content="Visor Geoespacial · Atlas Digital del Litoral de Manzanillo"><meta property="og:description" content="Visor geoespacial interactivo del litoral de Manzanillo: capas de geología, geomorfología, perfiles de playa, sedimentología, mineralogía, líneas de costa, vulnerabilidad y más."><meta property="og:image" content="assets/img/hero/hero-manzanillo.jpg"><meta property="og:type" content="website">
+<link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages/visor.css">
+<link rel="stylesheet" id="leaflet-css" href="" disabled>
+</head>
+<body data-page="visor" class="map-page">
+<div id="app-header"></div>
+<main id="contenido" class="map-stage" id="vz-stage">
+  <div class="vz-view" id="vz-atlas">
+    <div class="vz-inner" id="vz-inner">
+      <img src="assets/img/mapas/visor-base.jpg" alt="Imagen base del litoral de Manzanillo" draggable="false">
+      <svg id="vz-svg" viewBox="0 0 1100 800" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <div id="vz-pts"></div><div id="vz-spots"></div>
+    </div>
+  </div>
+  <div class="vz-view hide" id="vz-sat"><div id="vz-map"></div></div>
+
+  <aside class="vz-panel" id="vz-panel" aria-label="Capas y herramientas">
+    <section><div class="vz-h"><h2>Capas</h2><button class="vz-x" id="vz-close" aria-label="Ocultar panel">✕</button></div>
+      <div id="vz-layers"></div></section>
+    <section><h2>Herramientas</h2><div id="vz-tools"><button class="vz-tool" data-tool="dist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></svg><span>Medir distancia</span></button><button class="vz-tool" data-tool="area"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 7l7-3 9 5-3 10-11 1z"/></svg><span>Medir área</span></button><button class="vz-tool" data-tool="info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg><span>Información</span></button><button class="vz-tool" data-tool="print"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M7 9V3h10v6M7 17H4v-7h16v7h-3M7 14h10v7H7z"/></svg><span>Imprimir mapa</span></button></div><button class="btn btn-outline vz-dl" id="vz-download">Descargar mapa</button></section>
+    <section class="vz-goto"><label for="vz-goto">Ir a un sitio</label><select class="select" id="vz-goto"></select></section>
+  </aside>
+  <button class="vz-reopen hide" id="vz-reopen">☰ Capas</button>
+
+  <div class="vz-mode" data-nodrag><button class="on" data-mode="atlas">Vista Atlas</button><button data-mode="sat">Satélite real</button></div>
+  <div class="vz-zoom" data-nodrag><button id="vz-in" aria-label="Acercar">+</button><button id="vz-out" aria-label="Alejar">−</button><button id="vz-home" aria-label="Restablecer vista" title="Restablecer vista">⌂</button></div>
+  <div class="vz-legend hide" id="vz-legend" data-nodrag></div>
+  <div class="vz-tip hide" id="vz-tip" data-nodrag></div>
+  <div class="vz-card hide" id="vz-card" data-nodrag></div>
+  <div class="vz-scale" id="vz-scale"><div id="vz-scale-l"><span>0</span><span id="vz-s1"></span><span id="vz-s2"></span></div><i id="vz-bar"></i></div>
+  <div class="vz-coords" id="vz-coords">Coordenadas: 19.0551° N, 104.3133° O</div>
+</main>
+<script src="js/data/site.js"></script>
+<script src="js/components/layout.js"></script>
+<script src="js/components/ui.js"></script>
+<script src="js/data/playas.js"></script>
+<script src="js/data/capas.js"></script>
+<script src="js/components/mapview.js"></script>
+<script src="js/main.js"></script>
+<script src="js/pages/visor.js"></script>
+</body>
+</html>
