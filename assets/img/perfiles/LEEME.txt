@@ -1,0 +1,1 @@
+Pon aquí las imágenes imagenesp_P01.jpeg … imagenesp_P31.jpeg de la carpeta images del mapa QGIS.
