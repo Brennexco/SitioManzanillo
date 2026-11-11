@@ -16,6 +16,7 @@ window.MULTIMEDIA = [
   { src: 'assets/img/campo/12-medicion-gnss.jpg',           titulo: 'Colocación de antena GNSS en la arena',          cat: 'campo fotografias',    video: '' },
   { src: 'assets/img/campo/13-vehiculo-gnss.jpg',           titulo: 'Traslado de equipo GNSS en vehículo de campo',   cat: 'campo fotografias',    video: '' },
   { src: 'assets/img/campo/14-operador-dron.jpg',           titulo: 'Operación de dron en el litoral',                cat: 'drones campo fotografias', video: '' },
-  { src: 'assets/img/campo/15-dron-playa.jpg',              titulo: 'Vuelo de dron frente a la playa',                cat: 'drones campo fotografias', video: '' }
+  { src: 'assets/img/campo/15-dron-playa.jpg',              titulo: 'Vuelo de dron frente a la playa',                cat: 'drones campo fotografias', video: '' },
+  { src: 'assets/img/campo/1000521218.jpg',                 titulo: 'Trabajo de campo en el litoral',                 cat: 'campo fotografias',    video: '' }
 ];
 window.MULTIMEDIA_CATS = [['todas', 'Todas'], ['fotografias', 'Fotografías'], ['videos', 'Vídeos'], ['drones', 'Drones'], ['campo', 'Trabajo de campo'], ['laboratorio', 'Laboratorio']];
