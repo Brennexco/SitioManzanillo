@@ -14,8 +14,7 @@ window.GEO = { iw: 1100, ih: 800, lon0: -104.4050, lat0: 19.1155, dlon: 0.1167, 
       { t: 'poly', c: '#f472b6', l: 'Rocas intrusivas', pts: [[780,430],[1060,430],[1060,710],[780,710]] }] },
     { id: 'geomorfologia', nombre: 'Geomorfología', color: '#a3e635', leyenda: [['Planicie costera', '#38bdf8'], ['Lomeríos', '#a3e635'], ['Sierra', '#fb923c']], feats: [
       { t: 'poly', c: '#38bdf8', l: 'Planicie costera', pts: ell(470, 440, 150, 70) }, { t: 'poly', c: '#a3e635', l: 'Lomeríos', pts: ell(900, 170, 150, 90) }, { t: 'poly', c: '#fb923c', l: 'Sierra', pts: ell(650, 260, 170, 120) }] },
-    { id: 'perfiles', nombre: 'Perfiles de playa', color: '#facc15', leyenda: [['Transectos P1–P8', '#facc15']], feats: [
-      [400,423,90],[445,433,101],[490,455,114],[530,497,127],[565,548,150],[588,612,178],[160,170,88],[240,174,80]].map(function (p, i) { return { t: 'line', c: '#facc15', w: 3, l: 'Perfil P' + (i + 1), pts: prof(p[0], p[1], p[2]) }; }) },
+    { id: 'perfiles', nombre: 'Perfiles de playa (QGIS)', color: '#ff2a1f', real: true, leyenda: [['Punto de perfil P01–P31 (se ve en Satélite real)', '#faff39']], feats: [] },
     { id: 'sedimentologia', nombre: 'Sedimentología', color: '#f59e0b', leyenda: [['Muestra de sedimento', '#f59e0b']], feats: [
       [408,432,'#fde68a','Arena media'],[470,452,'#fcd34d','Arena media'],[515,486,'#f59e0b','Arena gruesa'],[557,545,'#d97706','Arena gruesa / grava'],[582,598,'#b45309','Grava'],[585,640,'#fcd34d','Arena media'],[200,176,'#fde68a','Arena fina'],[255,178,'#fde68a','Arena fina']].map(function (p) { return { t: 'pt', c: p[2], l: 'Muestra: ' + p[3], p: [p[0], p[1]] }; }) },
     { id: 'mineralogia', nombre: 'Mineralogía', color: '#a78bfa', leyenda: [['Asociación mineral', '#a78bfa']], feats: [

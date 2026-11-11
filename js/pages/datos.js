@@ -28,5 +28,8 @@
     saveAs('ficha-' + slug(d.nombre) + '.csv', new Blob([csv], { type: 'text/csv;charset=utf-8' })); toast('Se descargó la ficha de metadatos (el archivo original aún no está cargado).');
   });
   $('#dat-mail').href = 'mailto:' + (window.SITE && SITE.correo || '') + '?subject=' + encodeURIComponent('Consulta — Atlas Digital del Litoral de Manzanillo');
+  var MT = window.MAPAS_TEMATICOS || [];
+  $('#mt-grid').innerHTML = MT.map(function (m, i) { return '<figure class="mt-card card hover"><button class="mt-img" data-i="' + i + '" aria-label="Ampliar ' + m.titulo + '"><img src="' + m.img + '" alt="' + m.titulo + '" loading="lazy"></button><figcaption><b>' + m.titulo + '</b><a class="dl-btn" href="' + m.pdf + '" download>PDF</a></figcaption></figure>'; }).join('');
+  $('#mt-grid').addEventListener('click', function (e) { var b = e.target.closest('.mt-img'); if (b) openLightbox(MT.map(function (m) { return { src: m.img, title: m.titulo }; }), +b.dataset.i); });
   render();
 })();

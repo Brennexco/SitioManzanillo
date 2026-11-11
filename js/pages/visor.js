@@ -58,7 +58,7 @@
   }
 
   /* ---------- Capas ---------- */
-  function layersChanged() {
+  function layersChanged(ev) {
     $$('.vz-layer input').forEach(function (c) { S.on[c.dataset.id] = c.checked; });
     $$('#vz-svg .lg').forEach(function (g) { g.classList.toggle('on', !!S.on[g.dataset.l]); });
     $$('.vz-pt').forEach(function (d) { d.classList.toggle('on', !!S.on[d.dataset.l]); });
@@ -67,6 +67,7 @@
     CAPAS.forEach(function (c) { if (S.on[c.id]) h += '<b>' + c.nombre + '</b>' + c.leyenda.map(function (l) { return '<i style="background:' + l[1] + '"></i>' + l[0]; }).join('<br>') + '<br>'; });
     $('#vz-legend').innerHTML = h; $('#vz-legend').classList.toggle('hide', !h);
     if (S.mode === 'sat') satLayers();
+    else if (ev && ev.target && ev.target.dataset && ev.target.dataset.id === 'perfiles' && ev.target.checked) { toast('Los perfiles de playa tienen coordenadas reales: se muestran sobre el satélite.'); setMode('sat'); }
   }
   $('#vz-layers').addEventListener('change', layersChanged);
 
@@ -166,6 +167,14 @@
   function satLayers() {
     if (!S.map) return; var L = S.L;
     CAPAS.forEach(function (c) {
+      if (c.real && !S.groups[c.id]) {
+        var gr = S.groups[c.id] = L.layerGroup(); S.pbounds = [];
+        (window.PERFILES_QGIS || []).forEach(function (p) {
+          S.pbounds.push([p[1], p[2]]);
+          var img = 'assets/img/perfiles/imagenesp_' + p[0] + '.jpeg';
+          L.circleMarker([p[1], p[2]], { radius: 6, color: '#ff2a1f', weight: 2, fillColor: '#faff39', fillOpacity: 1 }).bindTooltip('Perfil ' + p[0], { permanent: false }).bindPopup('<div class="pf-pop"><b>Perfil ' + p[0] + '</b><br><span>' + p[1].toFixed(5) + '°, ' + p[2].toFixed(5) + '°</span><img src="' + img + '" alt="Perfil ' + p[0] + '" onerror="this.style.display=\'none\'"></div>', { maxWidth: 360, minWidth: 220 }).addTo(gr);
+        });
+      }
       if (!S.groups[c.id]) {
         var g = S.groups[c.id] = L.layerGroup();
         c.feats.forEach(function (f) {
@@ -175,9 +184,9 @@
           else if (f.t === 'pt') { var q = px2ll(f.p[0], f.p[1]); L.circleMarker([q.lat, q.lng], { radius: 6, color: '#fff', weight: 2, fillColor: f.c, fillOpacity: 1 }).bindTooltip(f.l).addTo(g); }
         });
       }
-      var has = S.map.hasLayer(S.groups[c.id]); if (S.on[c.id] && !has) S.groups[c.id].addTo(S.map); if (!S.on[c.id] && has) S.map.removeLayer(S.groups[c.id]);
+      var has = S.map.hasLayer(S.groups[c.id]); if (c.real && S.on[c.id] && !has && S.pbounds && S.pbounds.length && !S.pfit) { S.pfit = true; S.map.fitBounds(S.pbounds, { padding: [40, 40] }); } if (S.on[c.id] && !has) S.groups[c.id].addTo(S.map); if (!S.on[c.id] && has) S.map.removeLayer(S.groups[c.id]);
     });
-    if (!S.warned && CAPAS.some(function (c) { return S.on[c.id]; })) { S.warned = true; toast('Sobre el satélite las capas temáticas son ilustrativas y aún no están georreferenciadas.'); }
+    if (!S.warned && CAPAS.some(function (c) { return S.on[c.id] && !c.real; })) { S.warned = true; toast('Sobre el satélite las capas temáticas son ilustrativas y aún no están georreferenciadas.'); }
     S.spots.forEach(function (m, i) { var v = S.on.vulnerabilidad; m.setStyle({ fillColor: v ? VC[PLAYAS[i].vuln] : '#2dd4bf' }); });
   }
   function setMode(m) {
