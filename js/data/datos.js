@@ -6,6 +6,7 @@ window.DATOS = [
   { nombre: 'Crecimiento urbano 2003–2018', desc: 'Expansión de la mancha urbana en la Bahía de Manzanillo', año: 2026, formato: 'PDF', tamaño: '2.0 MB', tipo: 'Mapas', sitio: 'Bahía de Santiago', categoria: 'Cartografía', archivo: 'assets/docs/mapas/mapa-crecimiento-urbano.pdf' },
   { nombre: 'Cambio de uso de suelo y vegetación', desc: 'Cambio de uso de suelo y vegetación 2003–2018 (INEGI Serie III y VII)', año: 2026, formato: 'PDF', tamaño: '2.0 MB', tipo: 'Mapas', sitio: 'Bahía de Santiago', categoria: 'Cartografía', archivo: 'assets/docs/mapas/mapa-uso-y-cambio-de-suelo.pdf' },
   { nombre: 'Puntos de muestreo en campo', desc: 'Área de estudio y puntos de muestreo, Bahía de Santiago', año: 2026, formato: 'PDF', tamaño: '1.1 MB', tipo: 'Mapas', sitio: 'Bahía de Santiago', categoria: 'Cartografía', archivo: 'assets/docs/mapas/mapa-puntos-de-muestreo.pdf' },
+  { nombre: 'Mapa de clima', desc: 'Clasificación climática de la Bahía de Santiago, Manzanillo', año: 2026, formato: 'PDF', tamaño: '4.4 MB', tipo: 'Mapas', sitio: 'Bahía de Santiago', categoria: 'Cartografía', archivo: 'assets/docs/mapas/mapa-clima.pdf' },
   { nombre: 'Perfiles de playa',            desc: 'Perfiles topográficos de playas seleccionadas',    año: 2024, formato: 'SHP',  tamaño: '5.2 MB', tipo: 'Perfiles',       sitio: 'Olas Altas',    categoria: 'Datos SIG',          archivo: '' },
   { nombre: 'Ortomosaico 2024',             desc: 'Ortomosaico puntual de resolución 5 cm',           año: 2024, formato: 'TIFF', tamaño: '1.2 GB', tipo: 'Ortomosaicos',   sitio: 'La Audiencia',  categoria: 'Imágenes',           archivo: '' },
   { nombre: 'Análisis de vulnerabilidad',   desc: 'Índice de vulnerabilidad costera',                 año: 2024, formato: 'PDF',  tamaño: '3.1 MB', tipo: 'Informes',       sitio: 'Miramar',       categoria: 'Análisis',           archivo: '' },
@@ -16,6 +17,7 @@ window.DATOS = [
 
 /* Mapas temáticos (vista previa en la página). Provienen de la carpeta «Mapas temáticos» del Drive. */
 window.MAPAS_TEMATICOS = [
+  { titulo: 'Mapa de clima', img: 'assets/img/mapas-tematicos/clima.jpg', pdf: 'assets/docs/mapas/mapa-clima.pdf' },
   { titulo: 'Mapa geológico', img: 'assets/img/mapas-tematicos/geologico.jpg', pdf: 'assets/docs/mapas/mapa-geologico.pdf' },
   { titulo: 'Mapa de batimetría', img: 'assets/img/mapas-tematicos/batimetria.jpg', pdf: 'assets/docs/mapas/mapa-batimetria.pdf' },
   { titulo: 'Crecimiento urbano 2003–2018', img: 'assets/img/mapas-tematicos/crecimiento-urbano.jpg', pdf: 'assets/docs/mapas/mapa-crecimiento-urbano.pdf' },
